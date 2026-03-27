@@ -7,6 +7,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { ru } from '@payloadcms/translations/languages/ru'
+import { Categories } from './collections/Categories'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -18,7 +19,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Categories],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
