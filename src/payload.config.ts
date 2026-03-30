@@ -10,6 +10,7 @@ import { ru } from '@payloadcms/translations/languages/ru'
 import { Categories } from './collections/Categories'
 import { Brands } from './collections/Brands'
 import { Products } from './collections/Products'
+import { Orders } from './collections/Orders'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -21,7 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Categories, Brands, Products],
+  collections: [Users, Media, Categories, Brands, Products, Orders],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
