@@ -1,6 +1,7 @@
 import * as migration_20260322_233106_initial from './20260322_233106_initial';
 import * as migration_20260327_101810_add_user_role from './20260327_101810_add_user_role';
 import * as migration_20260327_102947_add_categories from './20260327_102947_add_categories';
+import * as migration_20260330_085657_add_brands_table from './20260330_085657_add_brands_table';
 
 export const migrations = [
   {
@@ -16,6 +17,11 @@ export const migrations = [
   {
     up: migration_20260327_102947_add_categories.up,
     down: migration_20260327_102947_add_categories.down,
-    name: '20260327_102947_add_categories'
+    name: '20260327_102947_add_categories',
+  },
+  {
+    up: migration_20260330_085657_add_brands_table.up,
+    down: migration_20260330_085657_add_brands_table.down,
+    name: '20260330_085657_add_brands_table'
   },
 ];
