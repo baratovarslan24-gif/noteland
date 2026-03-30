@@ -16,11 +16,13 @@ export const Brands: CollectionConfig = {
   fields: [
     {
       name: 'name',
+      label: 'Название бренда',
       type: 'text',
       required: true,
     },
     {
       name: 'slug',
+      label: 'ЧПУ',
       type: 'text',
       admin: {
         readOnly: true, // чтобы руками не правили
@@ -44,6 +46,8 @@ export const Brands: CollectionConfig = {
     },
     {
       name: 'logo',
+      label: 'Логотип',
+      hasMany: false,
       type: 'upload',
       relationTo: 'media',
       admin: {

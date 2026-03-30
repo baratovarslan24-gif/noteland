@@ -13,11 +13,13 @@ export const Users: CollectionConfig = {
   fields: [
     {
       name: 'name',
+      label: 'Имя',
       type: 'text',
       required: true,
     },
     {
       name: 'role',
+      label: 'Роль',
       type: 'select',
       defaultValue: 'user',
       options: [

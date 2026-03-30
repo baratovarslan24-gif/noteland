@@ -16,12 +16,14 @@ export const Categories: CollectionConfig = {
   fields: [
     {
       name: 'name',
+      label: 'Название',
       type: 'text',
       required: true,
       unique: true,
     },
     {
       name: 'slug',
+      label: 'ЧПУ',
       type: 'text',
       admin: {
         readOnly: true, // чтобы руками не правили
@@ -45,6 +47,7 @@ export const Categories: CollectionConfig = {
     },
     {
       name: 'parent',
+      label: 'Родительская категория',
       type: 'relationship',
       relationTo: 'categories',
       hasMany: false,

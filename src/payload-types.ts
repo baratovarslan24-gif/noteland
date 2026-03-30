@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     categories: Category;
     brands: Brand;
+    products: Product;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     brands: BrandsSelect<false> | BrandsSelect<true>;
+    products: ProductsSelect<false> | ProductsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -193,6 +195,22 @@ export interface Brand {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: number;
+  name: string;
+  description?: string | null;
+  price: number;
+  category: number | Category;
+  brand?: (number | null) | Brand;
+  stock?: number | null;
+  images?: (number | Media)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -230,6 +248,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'brands';
         value: number | Brand;
+      } | null)
+    | ({
+        relationTo: 'products';
+        value: number | Product;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -334,6 +356,21 @@ export interface BrandsSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   logo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products_select".
+ */
+export interface ProductsSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  price?: T;
+  category?: T;
+  brand?: T;
+  stock?: T;
+  images?: T;
   updatedAt?: T;
   createdAt?: T;
 }
