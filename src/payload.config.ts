@@ -15,6 +15,7 @@ import { StoreInfo } from './globals/StoreInfo'
 import { FeaturedProductList } from './globals/FeaturedProductList'
 import { About } from './globals/About'
 import { Delivery } from './globals/Delivery'
+import { PrivacyPolicy } from './globals/PrivacyPolicy'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -27,7 +28,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Categories, Brands, Products, Orders],
-  globals: [StoreInfo, FeaturedProductList, About, Delivery],
+  globals: [StoreInfo, FeaturedProductList, About, Delivery, PrivacyPolicy],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
