@@ -102,6 +102,7 @@ export interface Config {
     delivery: Delivery;
     'privacy-policy': PrivacyPolicy;
     'return-policy': ReturnPolicy;
+    'terms-of-use': TermsOfUse;
   };
   globalsSelect: {
     website: WebsiteSelect<false> | WebsiteSelect<true>;
@@ -110,6 +111,7 @@ export interface Config {
     delivery: DeliverySelect<false> | DeliverySelect<true>;
     'privacy-policy': PrivacyPolicySelect<false> | PrivacyPolicySelect<true>;
     'return-policy': ReturnPolicySelect<false> | ReturnPolicySelect<true>;
+    'terms-of-use': TermsOfUseSelect<false> | TermsOfUseSelect<true>;
   };
   locale: null;
   widgets: {
@@ -623,6 +625,32 @@ export interface ReturnPolicy {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "terms-of-use".
+ */
+export interface TermsOfUse {
+  id: number;
+  title: string;
+  seoDescription: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "website_select".
  */
 export interface WebsiteSelect<T extends boolean = true> {
@@ -702,6 +730,18 @@ export interface PrivacyPolicySelect<T extends boolean = true> {
  * via the `definition` "return-policy_select".
  */
 export interface ReturnPolicySelect<T extends boolean = true> {
+  title?: T;
+  seoDescription?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "terms-of-use_select".
+ */
+export interface TermsOfUseSelect<T extends boolean = true> {
   title?: T;
   seoDescription?: T;
   content?: T;
