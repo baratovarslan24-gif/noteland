@@ -7,6 +7,7 @@ import * as migration_20260330_102308_add_orders_table from './20260330_102308_a
 import * as migration_20260331_132551_add_storeinfo_table from './20260331_132551_add_storeinfo_table';
 import * as migration_20260401_085429_add_featured_product_list_table from './20260401_085429_add_featured_product_list_table';
 import * as migration_20260401_090956_app_about_table from './20260401_090956_app_about_table';
+import * as migration_20260401_091646_add_delivery_table from './20260401_091646_add_delivery_table';
 
 export const migrations = [
   {
@@ -52,6 +53,11 @@ export const migrations = [
   {
     up: migration_20260401_090956_app_about_table.up,
     down: migration_20260401_090956_app_about_table.down,
-    name: '20260401_090956_app_about_table'
+    name: '20260401_090956_app_about_table',
+  },
+  {
+    up: migration_20260401_091646_add_delivery_table.up,
+    down: migration_20260401_091646_add_delivery_table.down,
+    name: '20260401_091646_add_delivery_table'
   },
 ];
