@@ -5,6 +5,7 @@ import * as migration_20260330_085657_add_brands_table from './20260330_085657_a
 import * as migration_20260330_092032_app_products_table from './20260330_092032_app_products_table';
 import * as migration_20260330_102308_add_orders_table from './20260330_102308_add_orders_table';
 import * as migration_20260331_132551_add_storeinfo_table from './20260331_132551_add_storeinfo_table';
+import * as migration_20260401_085429_add_featured_product_list_table from './20260401_085429_add_featured_product_list_table';
 
 export const migrations = [
   {
@@ -40,6 +41,11 @@ export const migrations = [
   {
     up: migration_20260331_132551_add_storeinfo_table.up,
     down: migration_20260331_132551_add_storeinfo_table.down,
-    name: '20260331_132551_add_storeinfo_table'
+    name: '20260331_132551_add_storeinfo_table',
+  },
+  {
+    up: migration_20260401_085429_add_featured_product_list_table.up,
+    down: migration_20260401_085429_add_featured_product_list_table.down,
+    name: '20260401_085429_add_featured_product_list_table'
   },
 ];

@@ -95,8 +95,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    website: Website;
+  };
+  globalsSelect: {
+    website: WebsiteSelect<false> | WebsiteSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -464,6 +468,52 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "website".
+ */
+export interface Website {
+  id: number;
+  name: string;
+  description: string;
+  logo: number | Media;
+  home_banner: number | Media;
+  address: string;
+  email: string;
+  phone: string;
+  socials?: {
+    facebook?: string | null;
+    instagram?: string | null;
+    telegram?: string | null;
+    whatsapp?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "website_select".
+ */
+export interface WebsiteSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  logo?: T;
+  home_banner?: T;
+  address?: T;
+  email?: T;
+  phone?: T;
+  socials?:
+    | T
+    | {
+        facebook?: T;
+        instagram?: T;
+        telegram?: T;
+        whatsapp?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
