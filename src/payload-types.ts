@@ -97,9 +97,13 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     website: Website;
+    'featured-product-list': FeaturedProductList;
+    about: About;
   };
   globalsSelect: {
     website: WebsiteSelect<false> | WebsiteSelect<true>;
+    'featured-product-list': FeaturedProductListSelect<false> | FeaturedProductListSelect<true>;
+    about: AboutSelect<false> | AboutSelect<true>;
   };
   locale: null;
   widgets: {
@@ -493,6 +497,48 @@ export interface Website {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "featured-product-list".
+ */
+export interface FeaturedProductList {
+  id: number;
+  products?:
+    | {
+        product?: (number | null) | Product;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about".
+ */
+export interface About {
+  id: number;
+  title: string;
+  seoDescription: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  image?: (number | null) | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "website_select".
  */
 export interface WebsiteSelect<T extends boolean = true> {
@@ -511,6 +557,34 @@ export interface WebsiteSelect<T extends boolean = true> {
         telegram?: T;
         whatsapp?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "featured-product-list_select".
+ */
+export interface FeaturedProductListSelect<T extends boolean = true> {
+  products?:
+    | T
+    | {
+        product?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about_select".
+ */
+export interface AboutSelect<T extends boolean = true> {
+  title?: T;
+  seoDescription?: T;
+  content?: T;
+  image?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
