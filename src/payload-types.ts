@@ -487,17 +487,17 @@ export interface Website {
   id: number;
   name: string;
   description: string;
-  logo: number | Media;
-  home_banner: number | Media;
   address: string;
-  email: string;
   phone: string;
+  email: string;
   socials?: {
     facebook?: string | null;
     instagram?: string | null;
     telegram?: string | null;
     whatsapp?: string | null;
   };
+  logo: number | Media;
+  heroImage: number | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -628,11 +628,9 @@ export interface ReturnPolicy {
 export interface WebsiteSelect<T extends boolean = true> {
   name?: T;
   description?: T;
-  logo?: T;
-  home_banner?: T;
   address?: T;
-  email?: T;
   phone?: T;
+  email?: T;
   socials?:
     | T
     | {
@@ -641,6 +639,8 @@ export interface WebsiteSelect<T extends boolean = true> {
         telegram?: T;
         whatsapp?: T;
       };
+  logo?: T;
+  heroImage?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
