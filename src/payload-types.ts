@@ -99,11 +99,17 @@ export interface Config {
     website: Website;
     'featured-product-list': FeaturedProductList;
     about: About;
+    delivery: Delivery;
+    'privacy-policy': PrivacyPolicy;
+    'return-policy': ReturnPolicy;
   };
   globalsSelect: {
     website: WebsiteSelect<false> | WebsiteSelect<true>;
     'featured-product-list': FeaturedProductListSelect<false> | FeaturedProductListSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
+    delivery: DeliverySelect<false> | DeliverySelect<true>;
+    'privacy-policy': PrivacyPolicySelect<false> | PrivacyPolicySelect<true>;
+    'return-policy': ReturnPolicySelect<false> | ReturnPolicySelect<true>;
   };
   locale: null;
   widgets: {
@@ -539,6 +545,84 @@ export interface About {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "delivery".
+ */
+export interface Delivery {
+  id: number;
+  title: string;
+  seoDescription: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "privacy-policy".
+ */
+export interface PrivacyPolicy {
+  id: number;
+  title: string;
+  seoDescription: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "return-policy".
+ */
+export interface ReturnPolicy {
+  id: number;
+  title: string;
+  seoDescription: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "website_select".
  */
 export interface WebsiteSelect<T extends boolean = true> {
@@ -585,6 +669,42 @@ export interface AboutSelect<T extends boolean = true> {
   seoDescription?: T;
   content?: T;
   image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "delivery_select".
+ */
+export interface DeliverySelect<T extends boolean = true> {
+  title?: T;
+  seoDescription?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "privacy-policy_select".
+ */
+export interface PrivacyPolicySelect<T extends boolean = true> {
+  title?: T;
+  seoDescription?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "return-policy_select".
+ */
+export interface ReturnPolicySelect<T extends boolean = true> {
+  title?: T;
+  seoDescription?: T;
+  content?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
