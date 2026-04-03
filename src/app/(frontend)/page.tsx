@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { getPayload } from 'payload'
 import React from 'react'
 import { fileURLToPath } from 'url'
-
+import { Button } from '@/components/ui/button'
 import config from '@/payload.config'
 
 export default async function HomePage() {
@@ -52,6 +52,9 @@ export default async function HomePage() {
         <a className="codeLink" href={fileURL}>
           <code>app/(frontend)/page.tsx</code>
         </a>
+        <Button className="bg-violet-950" variant="outline">
+          Button
+        </Button>
       </div>
     </div>
   )
