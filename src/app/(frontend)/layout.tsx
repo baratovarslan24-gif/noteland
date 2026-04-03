@@ -1,18 +1,26 @@
 import React from 'react'
 import './globals.css'
+import Header from '@/components/Header'
+import { getCompany } from '@/services/companyService'
+import type { Metadata } from 'next'
 
-export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+export async function generateMetadata(): Promise<Metadata> {
+  const company = await getCompany()
+
+  return {
+    title: company?.name || 'Next Company',
+    description: company?.description || '',
+  }
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
+  const company = await getCompany()
 
   return (
     <html lang="en">
       <body>
-        <header className="bg-teal-700">Header</header>
+        <Header company={company} />
         <main>{children}</main>
         <footer className="bg-teal-700">Footer</footer>
       </body>
