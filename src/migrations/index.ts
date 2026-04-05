@@ -13,6 +13,7 @@ import * as migration_20260401_092734_app_return from './20260401_092734_app_ret
 import * as migration_20260401_093740_changed_code_in_storeinfo from './20260401_093740_changed_code_in_storeinfo';
 import * as migration_20260401_094731_add_termsofuse from './20260401_094731_add_termsofuse';
 import * as migration_20260403_102117_add_header from './20260403_102117_add_header';
+import * as migration_20260405_083301_fix_code from './20260405_083301_fix_code';
 
 export const migrations = [
   {
@@ -88,6 +89,11 @@ export const migrations = [
   {
     up: migration_20260403_102117_add_header.up,
     down: migration_20260403_102117_add_header.down,
-    name: '20260403_102117_add_header'
+    name: '20260403_102117_add_header',
+  },
+  {
+    up: migration_20260405_083301_fix_code.up,
+    down: migration_20260405_083301_fix_code.down,
+    name: '20260405_083301_fix_code'
   },
 ];
