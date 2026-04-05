@@ -1,7 +1,7 @@
-export default async function HomePage() {
+export default function HomePage() {
   return (
-    <div>
-      <h1 className="text-9xl text-red-600">Это главная страница</h1>
+    <div className="flex justify-center items-center min-h-screen">
+      <h1 className="text-9xl text-red-600 font-bold">Это главная страница</h1>
     </div>
   )
 }
