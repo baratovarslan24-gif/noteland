@@ -20,7 +20,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Header company={company} />
+        <Header company={company ?? {}} />
         <main>{children}</main>
         <footer className="bg-teal-700">Footer</footer>
       </body>
