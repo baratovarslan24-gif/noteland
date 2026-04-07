@@ -1,28 +1,29 @@
 import React from 'react'
 import './globals.css'
-import Header from '@/components/Header'
-import { getCompany } from '@/services/companyService'
-import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import Header from '@/components/header/Header'
+import { getStoreInfo } from '@/lib/apiServices'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const company = await getCompany()
+export const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  variable: '--font-sans',
+})
 
-  return {
-    title: company?.name || 'Next Company',
-    description: company?.description || '',
-  }
+export const metadata = {
+  description: 'A blank template using Payload in a Next.js app.',
+  title: 'Payload Blank Template',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
-  const company = await getCompany()
+
+  const store = await getStoreInfo()
 
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <body>
-        <Header company={company ?? {}} />
+        <Header storeName={store.name} logoUrl={store.logo.url} />
         <main>{children}</main>
-        <footer className="bg-teal-700">Footer</footer>
       </body>
     </html>
   )
