@@ -7,14 +7,43 @@ import { LuUser } from 'react-icons/lu'
 import { IoIosClose } from 'react-icons/io'
 import { useState } from 'react'
 import { MdOutlineSearch } from 'react-icons/md'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/providers/AuthProvider'
 
-function Header({ storeName, logoUrl }: { storeName: string; logoUrl: string }) {
-  const [user, setUser] = useState(true)
+type Props = {
+  storeName: string
+  logoUrl?: string
+}
+
+function Header({ storeName, logoUrl }: Props) {
+  const { user, setUser } = useAuth()
   const [userBlockOpen, setUserBlockOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    try {
+      setLoading(true)
+
+      await fetch('/api/users/logout', {
+        method: 'POST',
+        credentials: 'include',
+      })
+
+      setUser(null)
+      router.push('/')
+      setUserBlockOpen(false)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const handleUserBlockClick = () => {
     setUserBlockOpen((prev) => !prev)
   }
+
+  if (!logoUrl) return null
 
   return (
     <>
@@ -25,7 +54,7 @@ function Header({ storeName, logoUrl }: { storeName: string; logoUrl: string }) 
         <div className="flex items-center gap-6">
           <Link href="/cart" className="relative">
             <LuShoppingCart className="w-5 h-5" />
-            <span className="w-5 h-5 rounded-full bg-indigo-500 text-white text-[10px] p-1 absolute -top-2 -right-3 flex items-center justify-center">
+            <span className="w-5 h-5 rounded-full bg-cyan-500 text-white text-[10px] p-1 absolute -top-2 -right-3 flex items-center justify-center">
               0
             </span>
           </Link>
@@ -42,39 +71,40 @@ function Header({ storeName, logoUrl }: { storeName: string; logoUrl: string }) 
         )}
 
         <div
-          className={`fixed w-[70%] min-h-screen top-0 right-0 bg-indigo-50 px-8 py-12 flex flex-col gap-y-6 z-20 transition-transform duration-300 ${userBlockOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          className={`fixed w-[70%] min-h-screen top-0 right-0 bg-cyan-50 px-8 py-12 flex flex-col gap-y-6 z-20 transition-transform duration-300 ${userBlockOpen ? 'translate-x-0' : 'translate-x-full'}`}
         >
           {user ? (
             <>
               <Link href="/profile" className="flex items-center gap-2">
                 <LuUser className="w-5 h-5" />
-                <span>Profile</span>
+                <span>Профиль</span>
               </Link>
               <Link href="/" className="flex items-center gap-2">
                 <LuShoppingCart className="w-5 h-5" />
-                <span>My Orders</span>
+                <span>Мои заказы</span>
               </Link>
               <hr />
-              <button className="bg-indigo-500 text-white rounded-full inline-block py-2">
-                Logout
+              <button
+                className="bg-cyan-500 text-white rounded-full inline-block py-2"
+                disabled={loading}
+                onClick={handleLogout}
+              >
+                {loading ? 'Выход...' : 'Выйти'}
               </button>
             </>
           ) : (
             <div className="flex gap-4 items-center justify-center py-4">
-              <Link className="bg-indigo-300 px-8 py-2 rounded-full text-white" href="/auth/login">
-                Login
+              <Link className="bg-cyan-300 px-8 py-2 rounded-full text-white" href="/auth/login">
+                Вход
               </Link>
-              <Link
-                className="bg-indigo-500 px-8 py-2 rounded-full text-white"
-                href="/auth/register"
-              >
-                Register
+              <Link className="bg-cyan-500 px-8 py-2 rounded-full text-white" href="/auth/register">
+                Регистрация
               </Link>
             </div>
           )}
 
           <button
-            className="w-6 h-6 bg-indigo-500 text-white absolute top-4 right-4 flex justify-center items-center text-sm font-bold p-1 rounded-full"
+            className="w-6 h-6 bg-cyan-500 text-white absolute top-4 right-4 flex justify-center items-center text-sm font-bold p-1 rounded-full"
             onClick={() => setUserBlockOpen(false)}
           >
             <IoIosClose className="w-4 h-4" />
@@ -85,21 +115,107 @@ function Header({ storeName, logoUrl }: { storeName: string; logoUrl: string }) 
           <MdOutlineSearch className="absolute top-3 left-3 w-4 h-4" />
           <input
             type="text"
-            placeholder="Search books..."
+            placeholder="Найти товар..."
             className="w-full bg-gray-50 border rounded-full py-2 px-2 pl-8"
           />
         </div>
 
         <div className="w-full flex items-center justify-center gap-4">
-          <Link className="bg-indigo-400 px-8 py-2 rounded-full text-white" href="/shop">
-            Shop
+          <Link className="bg-cyan-400 px-8 py-2 rounded-full text-white" href="/shop">
+            Магазин
           </Link>
-          <Link className="bg-indigo-400 px-8 py-2 rounded-full text-white" href="/new-arrivals">
-            New Arrivals
+          <Link className="bg-cyan-400 px-8 py-2 rounded-full text-white" href="/new-arrivals">
+            Новинки
           </Link>
         </div>
       </header>
-      <header className="hidden md:flex">Big Header</header>
+      <header className="hidden max-w-7xl mx-auto px-4 xl:px-8 py-4 border-b md:flex justify-between items-center gap-8">
+        <Link href="/">
+          <Logo src={logoUrl} alt={storeName} width={100} height={100} classes="object-contain" />
+        </Link>
+        <div className="flex items-center justify-center gap-4">
+          <Link className="text-cyan-500 hover:text-cyan-700 transition-colors" href="/shop">
+            Магазин
+          </Link>
+          <Link
+            className="text-cyan-500 hover:text-cyan-700 transition-colors"
+            href="/new-arrivals"
+          >
+            Новинки
+          </Link>
+        </div>
+        <div className="my-6 relative max-w-125 min-w-76">
+          <MdOutlineSearch className="absolute top-3 left-3 w-4 h-4" />
+          <input
+            type="text"
+            placeholder="Найти товар..."
+            className="w-full bg-gray-50 border rounded-full py-2 px-2 pl-8"
+          />
+        </div>
+        <div className="flex items-center gap-6">
+          <Link href="/cart" className="relative">
+            <LuShoppingCart className="w-5 h-5" />
+            <span className="w-5 h-5 rounded-full bg-cyan-500 text-white text-[10px] p-1 absolute -top-2 -right-3 flex items-center justify-center">
+              0
+            </span>
+          </Link>
+          <button aria-label="Open User Menu" onClick={handleUserBlockClick}>
+            <LuUser className="w-5 h-5" />
+          </button>
+        </div>
+
+        {userBlockOpen && (
+          <div
+            className="fixed w-full h-screen bg-black/40 top-0 left-0 backdrop-blur-sm z-10"
+            onClick={() => setUserBlockOpen(false)}
+          ></div>
+        )}
+
+        <div
+          className={`fixed w-[30%] min-h-screen top-0 right-0 bg-indigo-50 px-8 py-12 flex flex-col gap-y-6 z-20 transition-transform duration-300 ${userBlockOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        >
+          {user ? (
+            <>
+              <Link href="/profile" className="flex items-center gap-2">
+                <LuUser className="w-5 h-5" />
+                <span>Профиль</span>
+              </Link>
+              <Link href="/" className="flex items-center gap-2">
+                <LuShoppingCart className="w-5 h-5" />
+                <span>Мои заказы</span>
+              </Link>
+              <hr />
+              <button
+                className="bg-cyan-500 text-white rounded-full inline-block py-2"
+                disabled={loading}
+                onClick={handleLogout}
+              >
+                {loading ? 'Выход...' : 'Выйти'}
+              </button>
+            </>
+          ) : (
+            <div className="flex gap-4 items-center justify-center py-4">
+              <Link
+                className="bg-cyan-300 px-8 py-2 rounded-full text-white"
+                href="/auth/login"
+                onClick={() => setUserBlockOpen(false)}
+              >
+                Вход
+              </Link>
+              <Link className="bg-cyan-500 px-8 py-2 rounded-full text-white" href="/auth/register">
+                Зарегистрироваться
+              </Link>
+            </div>
+          )}
+
+          <button
+            className="w-6 h-6 bg-cyan-500 text-white absolute top-4 right-4 flex justify-center items-center text-sm font-bold p-1 rounded-full"
+            onClick={() => setUserBlockOpen(false)}
+          >
+            <IoIosClose className="w-4 h-4" />
+          </button>
+        </div>
+      </header>
     </>
   )
 }

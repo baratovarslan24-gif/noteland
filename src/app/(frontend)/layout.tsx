@@ -3,6 +3,9 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import Header from '@/components/header/Header'
 import { getStoreInfo } from '@/lib/apiServices'
+import { getPayloadClient } from '@/lib/payloadClient'
+import { headers } from 'next/headers'
+import { AuthProvider } from '@/providers/AuthProvider'
 
 export const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -14,16 +17,27 @@ export const metadata = {
   title: 'Payload Blank Template',
 }
 
+// export async function generateMetadata(): Promise<Metadata> {
+//   const store = await getStoreInfo()
+
+//   return {
+//     title: store?.name || 'NoteLand',
+//     description: store?.description || '',
+//   }
+// }
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
-
   const store = await getStoreInfo()
+  const payload = await getPayloadClient()
+  const { user } = await payload.auth({ headers: await headers() })
 
   return (
     <html lang="en" className={inter.variable}>
       <body>
-        <Header storeName={store.name} logoUrl={store.logo.url} />
-        <main>{children}</main>
+        <AuthProvider initialUser={user}>
+          <Header storeName={store.name} logoUrl={store.logoUrl} />
+          <main>{children}</main>
+        </AuthProvider>
       </body>
     </html>
   )
