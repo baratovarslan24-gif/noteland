@@ -10,6 +10,9 @@ export const Users: CollectionConfig = {
     useAsTitle: 'email',
   },
   auth: true,
+  access: {
+    create: () => true,
+  },
   fields: [
     {
       name: 'name',

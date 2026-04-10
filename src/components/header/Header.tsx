@@ -97,7 +97,11 @@ function Header({ storeName, logoUrl }: Props) {
               <Link className="bg-cyan-300 px-8 py-2 rounded-full text-white" href="/auth/login">
                 Вход
               </Link>
-              <Link className="bg-cyan-500 px-8 py-2 rounded-full text-white" href="/auth/register">
+              <Link
+                className="bg-cyan-500 px-8 py-2 rounded-full text-white"
+                href="/auth/register"
+                onClick={() => setUserBlockOpen(false)}
+              >
                 Регистрация
               </Link>
             </div>
@@ -202,8 +206,12 @@ function Header({ storeName, logoUrl }: Props) {
               >
                 Вход
               </Link>
-              <Link className="bg-cyan-500 px-8 py-2 rounded-full text-white" href="/auth/register">
-                Зарегистрироваться
+              <Link
+                className="bg-cyan-500 px-8 py-2 rounded-full text-white"
+                href="/auth/register"
+                onClick={() => setUserBlockOpen(false)}
+              >
+                Регистрация
               </Link>
             </div>
           )}
