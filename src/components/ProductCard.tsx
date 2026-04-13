@@ -53,13 +53,13 @@ export default function ProductCard({ product }: Props) {
               </span>
             </div>
           ) : (
-            <span className="font-semibold text-indigo-700 text-lg">
+            <span className="font-semibold text-cyan-700 text-lg">
               ${formatPrice(product.price)}
             </span>
           )}
         </div>
 
-        <button className="py-2 px-5 bg-indigo-600 hover:bg-indigo-700 transition rounded-full text-white text-sm">
+        <button className="py-2 px-5 bg-cyan-600 hover:bg-cyan-700 transition rounded-full text-white text-sm">
           В корзину
         </button>
       </div>

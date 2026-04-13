@@ -15,10 +15,10 @@ export default async function HomePage() {
       <HomepageHeroBlock store={store} />
       <section className="max-w-7xl mx-auto px-4 py-10">
         <div className="flex justify-between">
-          <h2 className="font-bold text-2xl md:text-4xl text-indigo-600 mb-4 md:mb-8">
+          <h2 className="font-bold text-2xl md:text-4xl text-cyan-600 mb-4 md:mb-8">
             Мы рекомендуем
           </h2>
-          <Link href="/shop" className="text-indigo-600 flex items-center gap-2">
+          <Link href="/shop" className="text-cyan-600 flex items-center gap-2">
             Посмотреть все
             <FaArrowRightLong />
           </Link>
