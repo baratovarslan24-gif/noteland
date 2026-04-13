@@ -220,11 +220,14 @@ export interface Product {
   name: string;
   summary: string;
   description?: string | null;
-  price: number;
+  mainPhoto?: (number | null) | Media;
+  photos?: (number | Media)[] | null;
   category: number | Category;
   brand?: (number | null) | Brand;
+  price: number;
+  salePrice?: number | null;
   stock?: number | null;
-  images?: (number | Media)[] | null;
+  isPublished?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -411,11 +414,14 @@ export interface ProductsSelect<T extends boolean = true> {
   name?: T;
   summary?: T;
   description?: T;
-  price?: T;
+  mainPhoto?: T;
+  photos?: T;
   category?: T;
   brand?: T;
+  price?: T;
+  salePrice?: T;
   stock?: T;
-  images?: T;
+  isPublished?: T;
   updatedAt?: T;
   createdAt?: T;
 }

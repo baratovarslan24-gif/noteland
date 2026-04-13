@@ -2,6 +2,9 @@ import { CollectionConfig } from 'payload'
 
 export const Products: CollectionConfig = {
   slug: 'products',
+  access: {
+    read: () => true,
+  },
   labels: {
     singular: 'Товар',
     plural: 'Товары',
@@ -29,10 +32,21 @@ export const Products: CollectionConfig = {
       label: 'Описание',
     },
     {
-      name: 'price',
-      type: 'number',
-      required: true,
-      label: 'Цена',
+      name: 'mainPhoto',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Главная Фото',
+      hasMany: false,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'photos',
+      type: 'upload',
+      label: 'Дополнительные Фото',
+      relationTo: 'media',
+      hasMany: true,
     },
     {
       name: 'category',
@@ -48,17 +62,30 @@ export const Products: CollectionConfig = {
       label: 'Бренд',
     },
     {
+      name: 'price',
+      type: 'number',
+      required: true,
+      label: 'Цена',
+    },
+    {
+      name: 'salePrice',
+      type: 'number',
+      label: 'Цена со скидкой',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'stock',
       type: 'number',
       defaultValue: 0,
       label: 'Количество на складе',
     },
     {
-      name: 'images',
-      type: 'upload',
-      relationTo: 'media',
-      hasMany: true,
-      label: 'Изображения',
+      name: 'isPublished',
+      type: 'checkbox',
+      defaultValue: false,
+      label: 'Опубликован',
       admin: {
         position: 'sidebar',
       },

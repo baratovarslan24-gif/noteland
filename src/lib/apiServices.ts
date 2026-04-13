@@ -17,3 +17,19 @@ export const getStoreInfo = cache(async () => {
       typeof res.logo === 'object' && res.logo !== null ? (res.logo.url ?? undefined) : undefined,
   }
 })
+
+export const getHomeProducts = async () => {
+  const res = await payload.find({
+    collection: 'products',
+    limit: 4,
+    depth: 1,
+    where: {
+      isPublished: {
+        equals: true,
+      },
+    },
+  })
+
+  const products = res.docs
+  return products
+}
