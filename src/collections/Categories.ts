@@ -46,6 +46,15 @@ export const Categories: CollectionConfig = {
       },
     },
     {
+      name: 'icon',
+      label: 'Иконка',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'parent',
       label: 'Родительская категория',
       type: 'relationship',

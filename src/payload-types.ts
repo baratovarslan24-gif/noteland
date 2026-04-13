@@ -195,6 +195,7 @@ export interface Category {
   id: number;
   name: string;
   slug?: string | null;
+  icon?: (number | null) | Media;
   parent?: (number | null) | Category;
   updatedAt: string;
   createdAt: string;
@@ -391,6 +392,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface CategoriesSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
+  icon?: T;
   parent?: T;
   updatedAt?: T;
   createdAt?: T;

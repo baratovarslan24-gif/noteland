@@ -33,3 +33,13 @@ export const getHomeProducts = async () => {
   const products = res.docs
   return products
 }
+
+export const getCategories = async () => {
+  const res = await payload.find({
+    collection: 'categories',
+    depth: 1,
+  })
+
+  const categories = res.docs
+  return categories
+}
