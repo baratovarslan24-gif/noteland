@@ -21,7 +21,7 @@ export default function HomepageHeroBlock({ store }: Props) {
               Просмотреть каталог
             </Link>
             <Link
-              className="py-2 px-4 text-center bg-cyan-300 text-white rounded-full"
+              className="py-2 px-4 text-center bg-orange-400 text-white rounded-full"
               href="/about"
             >
               О нас

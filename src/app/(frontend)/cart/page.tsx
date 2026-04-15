@@ -21,7 +21,7 @@ export default function CartPage() {
         <h1 className="text-3xl font-bold mb-4 text-cyan-600">Ваша корзина пуста</h1>
         <Link
           href="/shop"
-          className="inline-block mt-4 px-6 py-3 bg-cyan-600 text-white rounded-full"
+          className="inline-block mt-4 px-6 py-3 bg-orange-600 text-white rounded-full"
         >
           Перейти к покупкам
         </Link>
@@ -130,7 +130,7 @@ export default function CartPage() {
 
             <Link
               href="/checkout"
-              className="block text-center py-3 bg-cyan-600 hover:bg-cyan-700 transition text-white rounded-full"
+              className="block text-center py-3 bg-orange-600 hover:bg-orange-700 transition text-white rounded-full"
             >
               Оформить заказ
             </Link>

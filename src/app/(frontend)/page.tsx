@@ -24,7 +24,7 @@ export default async function HomePage() {
           <h2 className="font-bold text-2xl md:text-4xl text-cyan-600 mb-4 md:mb-8">
             Мы рекомендуем
           </h2>
-          <Link href="/shop" className="text-cyan-600 flex items-center gap-2">
+          <Link href="/shop" className="text-orange-600 flex items-center gap-2">
             Посмотреть все
             <FaArrowRightLong />
           </Link>
@@ -39,7 +39,7 @@ export default async function HomePage() {
       <section className="max-w-7xl mx-auto px-4 py-10">
         <div className="flex justify-between">
           <h2 className="font-bold text-2xl md:text-4xl text-cyan-600 mb-4 md:mb-8">Категории</h2>
-          <Link href="/shop" className="text-cyan-600 flex items-center gap-2">
+          <Link href="/shop" className="text-orange-600 flex items-center gap-2">
             Посмотреть все
             <FaArrowRightLong />
           </Link>
