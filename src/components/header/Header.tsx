@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { MdOutlineSearch } from 'react-icons/md'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/providers/AuthProvider'
+import { useCartStore } from '@/store/useCartStore'
 
 type Props = {
   storeName: string
@@ -21,6 +22,14 @@ function Header({ storeName, logoUrl }: Props) {
   const [loading, setLoading] = useState(false)
 
   const router = useRouter()
+
+  // Если нужно показать общее количество уникальных товаров
+  // const totalItems = useCartStore((state) => state.items.length)
+
+  // Общее количество товаров с учетом их количества
+  const totalItems = useCartStore((state) =>
+    state.items.reduce((acc, item) => acc + item.quantity, 0),
+  )
 
   const handleLogout = async () => {
     try {
@@ -55,7 +64,7 @@ function Header({ storeName, logoUrl }: Props) {
           <Link href="/cart" className="relative">
             <LuShoppingCart className="w-5 h-5" />
             <span className="w-5 h-5 rounded-full bg-cyan-500 text-white text-[10px] p-1 absolute -top-2 -right-3 flex items-center justify-center">
-              0
+              {totalItems}
             </span>
           </Link>
           <button aria-label="Open User Menu" onClick={handleUserBlockClick}>
@@ -160,7 +169,7 @@ function Header({ storeName, logoUrl }: Props) {
           <Link href="/cart" className="relative">
             <LuShoppingCart className="w-5 h-5" />
             <span className="w-5 h-5 rounded-full bg-cyan-500 text-white text-[10px] p-1 absolute -top-2 -right-3 flex items-center justify-center">
-              0
+              {totalItems}
             </span>
           </Link>
           <button aria-label="Open User Menu" onClick={handleUserBlockClick}>
