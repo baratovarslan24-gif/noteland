@@ -1,7 +1,12 @@
+'use client'
+
 import { Product } from '@/payload-types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { formatPrice } from '@/lib/utils'
+import { useCartStore } from '@/store/useCartStore'
+import { toast } from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 
 type Props = {
   product: Product
@@ -12,6 +17,18 @@ type Brand = {
   name: string
 }
 export default function ProductCard({ product }: Props) {
+  const addItem = useCartStore((s) => s.addItem)
+
+  const handleAddToCart = () => {
+    console.log('adding')
+    addItem({
+      id: String(product.id),
+      title: product.name,
+      price: product.salePrice || product.price,
+    })
+
+    toast.success('Добавлено в корзину')
+  }
   return (
     <div
       key={product.id}
@@ -59,10 +76,14 @@ export default function ProductCard({ product }: Props) {
           )}
         </div>
 
-        <button className="py-2 px-5 bg-cyan-600 hover:bg-cyan-700 transition rounded-full text-white text-sm">
+        <button
+          onClick={handleAddToCart}
+          className="py-2 px-5 bg-indigo-600 hover:bg-indigo-700 transition rounded-full text-white text-sm cursor-pointer"
+        >
           В корзину
         </button>
       </div>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   )
 }
