@@ -21,7 +21,7 @@ export const getStoreInfo = cache(async () => {
 export const getHomeProducts = async () => {
   const res = await payload.find({
     collection: 'products',
-    limit: 4,
+    limit: 3,
     depth: 1,
     where: {
       isPublished: {

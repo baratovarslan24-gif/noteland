@@ -63,22 +63,22 @@ export default function ProductCard({ product }: Props) {
           {product.salePrice ? (
             <div className="flex items-center gap-2">
               <span className="text-gray-400 line-through text-sm">
-                ${formatPrice(product.price)}
+                {formatPrice(product.price)} сом
               </span>
               <span className="font-semibold text-red-600 text-lg">
-                ${formatPrice(product.salePrice)}
+                {formatPrice(product.salePrice)} сом
               </span>
             </div>
           ) : (
             <span className="font-semibold text-cyan-700 text-lg">
-              ${formatPrice(product.price)}
+              {formatPrice(product.price)} сом
             </span>
           )}
         </div>
 
         <button
           onClick={handleAddToCart}
-          className="py-2 px-5 bg-indigo-600 hover:bg-indigo-700 transition rounded-full text-white text-sm cursor-pointer"
+          className="py-2 px-5 bg-cyan-600 hover:bg-cyan-700 transition rounded-full text-white text-sm cursor-pointer"
         >
           В корзину
         </button>
