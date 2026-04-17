@@ -43,3 +43,12 @@ export const getCategories = async () => {
   const categories = res.docs
   return categories
 }
+
+export const getProducts = async () => {
+  const res = await payload.find({
+    collection: 'products',
+    depth: 1,
+  })
+  const products = res.docs
+  return products
+}

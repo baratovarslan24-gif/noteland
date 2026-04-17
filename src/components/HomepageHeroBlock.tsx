@@ -16,7 +16,7 @@ export default function HomepageHeroBlock({ store }: Props) {
           <p className="flex flex-col gap-2 md:flex-row">
             <Link
               className="py-2 px-4 text-center bg-cyan-400 text-white rounded-full"
-              href="/shop"
+              href="/products"
             >
               Просмотреть каталог
             </Link>

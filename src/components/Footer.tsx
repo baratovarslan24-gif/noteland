@@ -22,7 +22,7 @@ export default function Footer({ storeName, logoUrl, socials }: Props) {
     <footer className="bg-indigo-200 py-8">
       <div className="max-w-7xl mx-auto px-4 flex flex-col gap-y-8 md:flex-row md:justify-between md:items-center">
         <Link href="/">
-          <Logo src={logoUrl} alt={storeName} width={100} height={100} classes="object-contain" />
+          <Logo src={logoUrl} alt={storeName} width={120} height={120} classes="object-contain" />
         </Link>
         <div className="flex flex-col md:flex-row md:gap-x-4 md:items-center">
           <Link className="hover:-translate-y-1 transition duration-300" href="/">

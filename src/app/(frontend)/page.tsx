@@ -24,7 +24,7 @@ export default async function HomePage() {
           <h2 className="font-bold text-2xl md:text-4xl text-cyan-600 mb-4 md:mb-8">
             Мы рекомендуем
           </h2>
-          <Link href="/shop" className="text-orange-600 flex items-center gap-2">
+          <Link href="/products" className="text-orange-600 flex items-center gap-2">
             Посмотреть все
             <FaArrowRightLong />
           </Link>
