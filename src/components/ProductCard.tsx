@@ -66,7 +66,7 @@ export default function ProductCard({ product }: Props) {
         </div>
 
         {product.stock ? (
-          <AddToCartButton id={String(product.id)} title={product.name} price={product.price} />
+          <AddToCartButton id={product.id} title={product.name} price={product.price} />
         ) : (
           <span className="text-sm text-gray-400">Распродано</span>
         )}
