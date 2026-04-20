@@ -1,5 +1,6 @@
 import Stripe from 'stripe'
 import { getPayloadClient } from '@/lib/payloadClient'
+import type { Order } from '@/payload-types'
 
 if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error('Missing STRIPE_SECRET_KEY')
@@ -28,10 +29,14 @@ export default async function handler(req: Request) {
       items: CartItem[]
       shippingAddress: string
       phone: string
-      userId?: string
+      userId?: number
     } = body
 
     // Валидация
+    //
+    if (!userId) {
+      return new Response(JSON.stringify({ error: 'User required' }), { status: 400 })
+    }
 
     if (!items || items.length === 0) {
       return new Response(JSON.stringify({ error: 'Нет товаров' }), { status: 400 })
@@ -43,12 +48,25 @@ export default async function handler(req: Request) {
       })
     }
 
+    const data: Omit<Order, 'id' | 'createdAt' | 'updatedAt'> = {
+      user: userId,
+      status: 'pending',
+      paymentMethod: 'card',
+      shippingAddress,
+      phone,
+      items: items.map((item) => ({
+        product: item.id,
+        quantity: item.quantity,
+        price: item.price,
+      })),
+    }
+
     // Проверка существования продуктов
     for (const item of items) {
       try {
         await payload.findByID({
           collection: 'products',
-          id: item.id, // ✅ string ID
+          id: item.id,
         })
       } catch {
         console.error('❌ PRODUCT NOT FOUND:', item.id)
@@ -62,18 +80,7 @@ export default async function handler(req: Request) {
     // Создание заказа
     const order = await payload.create({
       collection: 'orders',
-      data: {
-        ...(userId ? { user: userId } : {}),
-        status: 'pending',
-        paymentMethod: 'card',
-        shippingAddress,
-        phone,
-        items: items.map((item) => ({
-          product: Number(item.id),
-          quantity: item.quantity,
-          price: item.price,
-        })),
-      },
+      data,
       overrideAccess: true,
     })
 
@@ -103,7 +110,7 @@ export default async function handler(req: Request) {
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/cart`,
     })
 
-    // 🔗 Save Stripe session ID
+    // сохранение Stripe session ID
     await payload.update({
       collection: 'orders',
       id: order.id,
