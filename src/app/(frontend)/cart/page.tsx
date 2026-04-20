@@ -15,6 +15,26 @@ export default function CartPage() {
 
   const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0)
 
+  const handleCheckout = async () => {
+    try {
+      const res = await fetch('/api/create-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items }),
+      })
+
+      const data = await res.json()
+
+      if (data.url) {
+        window.location.href = data.url
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   if (items.length === 0) {
     return (
       <section className="py-20 text-center min-h-120">
@@ -128,12 +148,12 @@ export default function CartPage() {
               <span>{formatPrice(total)} сом</span>
             </div>
 
-            <Link
-              href="/checkout"
-              className="block text-center py-3 bg-orange-600 hover:bg-orange-700 transition text-white rounded-full"
+            <button
+              onClick={handleCheckout}
+              className="block w-full text-center py-3 bg-indigo-600 hover:bg-indigo-700 transition text-white rounded-full"
             >
               Оформить заказ
-            </Link>
+            </button>
           </div>
         </div>
       </div>
