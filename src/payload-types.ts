@@ -244,6 +244,7 @@ export interface Order {
   total?: number | null;
   shippingAddress: string;
   phone: string;
+  stripeSessionId?: string | null;
   items: {
     product: number | Product;
     quantity: number;
@@ -438,6 +439,7 @@ export interface OrdersSelect<T extends boolean = true> {
   total?: T;
   shippingAddress?: T;
   phone?: T;
+  stripeSessionId?: T;
   items?:
     | T
     | {

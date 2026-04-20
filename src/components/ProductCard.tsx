@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { formatPrice } from '@/lib/utils'
 import { useCartStore } from '@/store/useCartStore'
-import { toast } from 'react-hot-toast'
 import { AddToCartButton } from './AddToCartBtn'
 
 type Props = {
@@ -19,16 +18,6 @@ type Brand = {
 export default function ProductCard({ product }: Props) {
   const addItem = useCartStore((s) => s.addItem)
 
-  const handleAddToCart = () => {
-    console.log('adding')
-    addItem({
-      id: String(product.id),
-      title: product.name,
-      price: product.salePrice || product.price,
-    })
-
-    toast.success('Добавлено в корзину')
-  }
   return (
     <div
       key={product.id}

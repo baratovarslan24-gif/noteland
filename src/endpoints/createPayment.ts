@@ -1,17 +1,83 @@
 import Stripe from 'stripe'
+import { getPayloadClient } from '@/lib/payloadClient'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-06-20',
-})
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('Missing STRIPE_SECRET_KEY')
+}
 
-export default async function handler(req) {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+
+type CartItem = {
+  id: number
+  title: string
+  price: number
+  quantity: number
+}
+
+export default async function handler(req: Request) {
   try {
+    const payload = await getPayloadClient()
     const body = await req.json()
-    const { items } = body
+
+    const {
+      items,
+      shippingAddress,
+      phone,
+      userId,
+    }: {
+      items: CartItem[]
+      shippingAddress: string
+      phone: string
+      userId?: string
+    } = body
+
+    // Валидация
 
     if (!items || items.length === 0) {
       return new Response(JSON.stringify({ error: 'Нет товаров' }), { status: 400 })
     }
+
+    if (!shippingAddress || !phone) {
+      return new Response(JSON.stringify({ error: 'shippingAddress and phone are required' }), {
+        status: 400,
+      })
+    }
+
+    // Проверка существования продуктов
+    for (const item of items) {
+      try {
+        await payload.findByID({
+          collection: 'products',
+          id: item.id, // ✅ string ID
+        })
+      } catch {
+        console.error('❌ PRODUCT NOT FOUND:', item.id)
+
+        return new Response(JSON.stringify({ error: `Invalid product id: ${item.id}` }), {
+          status: 400,
+        })
+      }
+    }
+
+    // Создание заказа
+    const order = await payload.create({
+      collection: 'orders',
+      data: {
+        ...(userId ? { user: userId } : {}),
+        status: 'pending',
+        paymentMethod: 'card',
+        shippingAddress,
+        phone,
+        items: items.map((item) => ({
+          product: Number(item.id),
+          quantity: item.quantity,
+          price: item.price,
+        })),
+      },
+      overrideAccess: true,
+    })
+
+    // 💳 Create Stripe checkout session
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -22,21 +88,40 @@ export default async function handler(req) {
           product_data: {
             name: item.title,
           },
-          unit_amount: item.price * 100,
+          unit_amount: Math.round(item.price * 100),
         },
         quantity: item.quantity,
       })),
 
       mode: 'payment',
 
-      success_url: 'http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'http://localhost:3000/cart',
+      metadata: {
+        orderId: String(order.id),
+      },
+
+      success_url: `${process.env.NEXT_PUBLIC_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_URL}/cart`,
+    })
+
+    // 🔗 Save Stripe session ID
+    await payload.update({
+      collection: 'orders',
+      id: order.id,
+      data: {
+        stripeSessionId: session.id,
+      },
+      overrideAccess: true,
     })
 
     return new Response(JSON.stringify({ url: session.url }), { status: 200 })
-  } catch (err) {
-    console.error(err)
+  } catch (err: any) {
+    console.error('ERROR:', err)
 
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 })
+    return new Response(
+      JSON.stringify({
+        error: err.message || 'Internal server error',
+      }),
+      { status: 500 },
+    )
   }
 }
