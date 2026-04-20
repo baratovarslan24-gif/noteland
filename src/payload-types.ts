@@ -224,7 +224,7 @@ export interface Product {
   mainPhoto?: (number | null) | Media;
   photos?: (number | Media)[] | null;
   category: number | Category;
-  brand?: (number | null) | Brand;
+  brand?: (number | Brand)[] | null;
   price: number;
   salePrice?: number | null;
   stock?: number | null;

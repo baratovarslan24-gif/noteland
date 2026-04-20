@@ -60,6 +60,7 @@ export const Products: CollectionConfig = {
       type: 'relationship',
       relationTo: 'brands',
       label: 'Бренд',
+      hasMany: true,
     },
     {
       name: 'price',
