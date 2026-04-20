@@ -15,7 +15,7 @@ export function AddToCartButton({
 
   const handleAddToCart = () => {
     addItem({ id, title, price })
-    toast.success('Added to cart')
+    toast.success('Добавлено в корзину')
   }
 
   return (
