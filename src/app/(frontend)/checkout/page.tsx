@@ -4,9 +4,12 @@ import { useState } from 'react'
 import { useCartStore } from '@/store/useCartStore'
 import { formatPrice } from '@/lib/utils'
 import { useAuth } from '@/providers/AuthProvider'
+import { useRouter } from 'next/navigation'
 
 export default function CheckoutPage() {
   const items = useCartStore((s) => s.items)
+
+  const router = useRouter()
 
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
@@ -17,12 +20,26 @@ export default function CheckoutPage() {
 
   const handleCheckout = async () => {
     try {
-      // простая валидация
+      //  Проверка авторизации
+      if (!user?.id) {
+        alert('You should be logged in to checkout')
+        router.push('/auth/login')
+        return
+      }
+
+      //  Проверка корзины
+      if (!items || items.length === 0) {
+        alert('Корзина пуста')
+        return
+      }
+
+      //  Проверка формы
       if (!address || !phone) {
         alert('Заполни адрес и телефон')
         return
       }
 
+      //  Запрос на сервер
       const res = await fetch('/api/create-payment', {
         method: 'POST',
         headers: {
@@ -32,23 +49,28 @@ export default function CheckoutPage() {
           items,
           shippingAddress: address,
           phone,
-          userId: user?.id, // 👈 ВАЖНО
+          userId: user.id, // гарантированно есть
         }),
       })
 
       const data = await res.json()
 
+      //  Ошибка от сервера
       if (!res.ok) {
         console.error('Ошибка оплаты:', data.error)
-        alert('Ошибка оплаты')
+        alert(data.error || 'Ошибка оплаты')
         return
       }
 
+      //  Редирект на Stripe
       if (data.url) {
         window.location.href = data.url
+      } else {
+        alert('Failed to create payment')
       }
     } catch (err) {
-      console.error(err)
+      console.error('Checkout error:', err)
+      alert('Failed to create payment')
     }
   }
 
