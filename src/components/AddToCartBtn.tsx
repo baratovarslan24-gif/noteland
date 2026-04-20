@@ -7,7 +7,7 @@ export function AddToCartButton({
   title,
   price,
 }: {
-  id: string
+  id: number
   title: string
   price: number
 }) {
