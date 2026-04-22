@@ -52,3 +52,30 @@ export const getProducts = async () => {
   const products = res.docs
   return products
 }
+
+export const getCategory = async (categoryId: string) => {
+  const res = await payload.findByID({
+    collection: 'categories',
+    id: categoryId,
+  })
+
+  return res
+}
+
+export const getProductsByCategory = async (categoryId: string, { page = 1, limit = 8 } = {}) => {
+  const res = await payload.find({
+    collection: 'products',
+    where: {
+      category: {
+        equals: categoryId,
+      },
+    },
+    page,
+    limit,
+  })
+
+  return {
+    products: res.docs,
+    total: res.totalDocs,
+  }
+}
