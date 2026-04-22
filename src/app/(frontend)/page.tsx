@@ -4,9 +4,17 @@ import CategoryCard from '@/components/CategoryCard'
 import { getHomeProducts, getStoreInfo, getCategories } from '@/lib/apiServices'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { getVeryLightColor } from '@/lib/utils'
 import { FaArrowRightLong } from 'react-icons/fa6'
+import { Metadata } from 'next'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const store = await getStoreInfo()
+
+  return {
+    title: `${store?.name} - Online Store` || 'Home Page',
+  }
+}
 
 export default async function HomePage() {
   const store = await getStoreInfo()
