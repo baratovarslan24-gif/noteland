@@ -52,7 +52,7 @@ export default async function HomePage() {
             className="border rounded-sm flex flex-col items-center justify-center p-4 text-cyan-600"
             style={{ backgroundColor: getVeryLightColor() }}
           >
-            <Link className="flex flex-col items-center justify-center" href={'#'}>
+            <Link className="flex flex-col items-center justify-center" href={'/categories'}>
               <span className="font-bold text-3xl">+</span> {leftCategoriesCount} Категорий
             </Link>
           </div>
