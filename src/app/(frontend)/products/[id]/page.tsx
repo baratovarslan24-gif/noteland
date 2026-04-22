@@ -5,6 +5,26 @@ import { formatPrice } from '@/lib/utils'
 import { ProductGallery } from '@/components/ProductGallery'
 import { AddToCartButton } from '@/components/AddToCartBtn'
 import { ProductDescription } from '@/components/ProductDescription'
+import type { Metadata } from 'next'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}): Promise<Metadata> {
+  const { id } = await params
+  const payload = await getPayloadClient()
+
+  const product = (await payload.findByID({
+    collection: 'products',
+    id,
+    depth: 2,
+  })) as Product
+
+  return {
+    title: product?.name || 'Product',
+  }
+}
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
