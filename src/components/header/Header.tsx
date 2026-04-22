@@ -151,6 +151,9 @@ function Header({ storeName, logoUrl }: Props) {
           <Link className="bg-indigo-400 px-8 py-2 rounded-full text-white" href="/about">
             About us
           </Link>
+          <Link className="bg-indigo-400 px-8 py-2 rounded-full text-white" href="/contacts">
+            Contacts
+          </Link>
         </div>
       </header>
       <header className="hidden max-w-7xl mx-auto px-4 xl:px-8 py-4 border-b md:flex justify-between items-center gap-8">
@@ -169,6 +172,12 @@ function Header({ storeName, logoUrl }: Props) {
           </Link>
           <Link className="text-indigo-500 hover:text-indigo-700 transition-colors" href="/about">
             About us
+          </Link>
+          <Link
+            className="text-indigo-500 hover:text-indigo-700 transition-colors"
+            href="/contacts"
+          >
+            Contacts
           </Link>
         </div>
         <div className="my-6 relative max-w-125 min-w-76">
