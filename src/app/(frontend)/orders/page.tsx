@@ -91,7 +91,10 @@ export default function OrdersPage() {
     return (
       <div className="p-10 text-center">
         <h1 className="text-2xl font-bold mb-4">You have no orders</h1>
-        <Link href="/books" className="inline-block px-6 py-2 bg-gray-700 text-white rounded-full">
+        <Link
+          href="/products"
+          className="inline-block px-6 py-2 bg-gray-700 text-white rounded-full"
+        >
           Go to shopping
         </Link>
       </div>

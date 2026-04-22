@@ -114,3 +114,12 @@ export const getPrivacyPolicyPage = async () => {
 
   return res
 }
+
+export const getTermsOfUsePage = async () => {
+  const res = await payload.findGlobal({
+    slug: 'terms-of-use',
+    depth: 2,
+  })
+
+  return res
+}
