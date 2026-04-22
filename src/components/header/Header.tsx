@@ -5,11 +5,12 @@ import Logo from './Logo'
 import { LuShoppingCart } from 'react-icons/lu'
 import { LuUser } from 'react-icons/lu'
 import { IoIosClose } from 'react-icons/io'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { MdOutlineSearch } from 'react-icons/md'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/providers/AuthProvider'
 import { useCartStore } from '@/store/useCartStore'
+import { useSearchParams } from 'next/navigation'
 
 type Props = {
   storeName: string
@@ -20,8 +21,29 @@ function Header({ storeName, logoUrl }: Props) {
   const { user, setUser } = useAuth()
   const [userBlockOpen, setUserBlockOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [search, setSearch] = useState('')
+
+  const searchParams = useSearchParams()
 
   const router = useRouter()
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    const value = search.trim()
+    if (!value) return
+
+    const params = new URLSearchParams(searchParams.toString())
+
+    params.set('search', value)
+    params.set('page', '1')
+
+    router.push(`/products?${params.toString()}`)
+  }
+
+  useEffect(() => {
+    const querySearch = searchParams.get('search') || ''
+    setSearch(querySearch)
+  }, [searchParams])
 
   // Если нужно показать общее количество уникальных товаров
   // const totalItems = useCartStore((state) => state.items.length)
@@ -132,14 +154,16 @@ function Header({ storeName, logoUrl }: Props) {
           </button>
         </div>
 
-        <div className="w-full my-6 relative">
+        <form onSubmit={handleSearch} className="w-full my-6 relative">
           <MdOutlineSearch className="absolute top-3 left-3 w-4 h-4" />
           <input
             type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             placeholder="Найти товар..."
             className="w-full bg-gray-50 border rounded-full py-2 px-2 pl-8"
           />
-        </div>
+        </form>
 
         <div className="w-full flex items-center justify-center gap-4 flex-wrap">
           <Link className="bg-orange-400 px-8 py-2 rounded-full text-white" href="/products">
@@ -180,14 +204,16 @@ function Header({ storeName, logoUrl }: Props) {
             Contacts
           </Link>
         </div>
-        <div className="my-6 relative max-w-125 min-w-76">
+        <form onSubmit={handleSearch} className="flex-1 my-6 relative">
           <MdOutlineSearch className="absolute top-3 left-3 w-4 h-4" />
           <input
             type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             placeholder="Найти товар..."
             className="w-full bg-gray-50 border rounded-full py-2 px-2 pl-8"
           />
-        </div>
+        </form>
         <div className="flex items-center gap-6">
           <Link href="/cart" className="relative">
             <LuShoppingCart className="w-5 h-5" />

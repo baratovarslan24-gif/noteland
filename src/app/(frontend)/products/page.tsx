@@ -15,6 +15,7 @@ interface SearchParams {
   priceMax?: string
   inStock?: string
   sale?: string
+  search?: string
 }
 
 const LIMIT = 9
@@ -35,18 +36,41 @@ export default async function ProductsPage({
           ? 'publishedYear'
           : '-publishedYear'
 
-  const where: Record<string, unknown> = {
-    isPublished: { equals: true },
+  // ✅ собираем условия отдельно
+  const and: Where[] = []
+
+  if (params.category) {
+    and.push({ category: { equals: params.category } })
   }
 
-  if (params.category) where.category = { equals: params.category }
-  if (params.inStock === 'true') where.inStock = { equals: true }
-  if (params.sale === 'true') where.salePrice = { exists: true }
+  if (params.inStock === 'true') {
+    and.push({ inStock: { equals: true } })
+  }
+
+  if (params.sale === 'true') {
+    and.push({ salePrice: { exists: true } })
+  }
+
   if (params.priceMin || params.priceMax) {
-    where.price = {
-      ...(params.priceMin && { greater_than_equal: Number(params.priceMin) }),
-      ...(params.priceMax && { less_than_equal: Number(params.priceMax) }),
-    }
+    and.push({
+      price: {
+        ...(params.priceMin && { greater_than_equal: Number(params.priceMin) }),
+        ...(params.priceMax && { less_than_equal: Number(params.priceMax) }),
+      },
+    })
+  }
+
+  if (params.search?.trim()) {
+    const search = params.search.trim()
+
+    and.push({
+      or: [{ name: { like: search } }],
+    })
+  }
+
+  const where: Where = {
+    isPublished: { equals: true },
+    ...(and.length > 0 && { and }),
   }
 
   const payload = await getPayloadClient()
@@ -57,7 +81,7 @@ export default async function ProductsPage({
       page,
       limit: LIMIT,
       sort,
-      where: where as Where,
+      where,
       depth: 1,
     }),
     payload.find({
