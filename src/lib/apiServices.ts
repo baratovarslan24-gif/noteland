@@ -79,3 +79,11 @@ export const getProductsByCategory = async (categoryId: string, { page = 1, limi
     total: res.totalDocs,
   }
 }
+export const getAboutUsPage = async () => {
+  const res = await payload.findGlobal({
+    slug: 'about',
+    depth: 2,
+  })
+
+  return res
+}
