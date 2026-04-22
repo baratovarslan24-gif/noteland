@@ -87,3 +87,12 @@ export const getAboutUsPage = async () => {
 
   return res
 }
+
+export const getDeliveryPolicyPage = async () => {
+  const res = await payload.findGlobal({
+    slug: 'delivery',
+    depth: 2,
+  })
+
+  return res
+}

@@ -29,6 +29,10 @@ export default function Footer({ storeName, logoUrl, socials }: Props) {
             О нас
           </Link>{' '}
           <GoDotFill className="w-2 h-2" />
+          <Link className="hover:-translate-y-1 transition duration-300" href="/delivery-policy">
+            Delivery Policy
+          </Link>{' '}
+          <GoDotFill className="w-2 h-2" />
           <Link className="hover:-translate-y-1 transition duration-300" href="/">
             Политика возврата
           </Link>{' '}
