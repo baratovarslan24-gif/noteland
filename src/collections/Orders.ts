@@ -27,7 +27,7 @@ export const Orders: CollectionConfig = {
             }),
           )
           data.items = items
-          data.total = items.reduce((sum, item) => sum + item.price * item.quantity)
+          data.total = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
         }
         return data
       },

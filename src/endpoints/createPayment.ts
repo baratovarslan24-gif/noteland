@@ -1,4 +1,5 @@
 import Stripe from 'stripe'
+import type { PayloadRequest } from 'payload'
 import { getPayloadClient } from '@/lib/payloadClient'
 import type { Order } from '@/payload-types'
 
@@ -15,29 +16,35 @@ type CartItem = {
   quantity: number
 }
 
-export default async function handler(req: Request) {
+export default async function handler(req: PayloadRequest) {
   try {
     const payload = await getPayloadClient()
-    const body = await req.json()
+    // Получаем пользователя из запроса (Payload автоматически декодирует JWT)
+    if (!req.user) {
+      return new Response(JSON.stringify({ error: 'User required' }), { status: 401 })
+    }
 
-    const {
-      items,
-      shippingAddress,
-      phone,
-      userId,
-    }: {
+    // В Next.js App Router Payload endpoints получаем данные через req.json()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const jsonFn = (req as any).json || (req as any).text
+    let parsedBody: {
       items: CartItem[]
       shippingAddress: string
       phone: string
-      userId?: number
-    } = body
+    } | null = null
+
+    try {
+      if (jsonFn) {
+        parsedBody = await jsonFn()
+      }
+    } catch {
+      parsedBody = null
+    }
+
+    const { items, shippingAddress, phone } = parsedBody || {}
 
     // Валидация
     //
-    if (!userId) {
-      return new Response(JSON.stringify({ error: 'User required' }), { status: 400 })
-    }
-
     if (!items || items.length === 0) {
       return new Response(JSON.stringify({ error: 'Нет товаров' }), { status: 400 })
     }
@@ -49,7 +56,7 @@ export default async function handler(req: Request) {
     }
 
     const data: Omit<Order, 'id' | 'createdAt' | 'updatedAt'> = {
-      user: userId,
+      user: req.user.id,
       status: 'pending',
       paymentMethod: 'card',
       shippingAddress,
@@ -84,7 +91,7 @@ export default async function handler(req: Request) {
       overrideAccess: true,
     })
 
-    // 💳 Create Stripe checkout session
+    // создание Stripe сессии оплаты
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],

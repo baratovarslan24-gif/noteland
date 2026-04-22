@@ -49,7 +49,6 @@ export default function CheckoutPage() {
           items,
           shippingAddress: address,
           phone,
-          userId: user.id, // гарантированно есть
         }),
       })
 
