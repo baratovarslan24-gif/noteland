@@ -1,6 +1,11 @@
 import { getPayloadClient } from '@/lib/payloadClient'
 import ProductsClient from '@/components/ProductsClient'
 import type { Where } from 'payload'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'All products in our store',
+}
 
 interface SearchParams {
   page?: string
