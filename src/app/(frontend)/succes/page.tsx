@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import { useCartStore } from '@/store/useCartStore'
+import Link from 'next/link'
 
 export default function SuccessPage() {
   const params = useSearchParams()
@@ -16,10 +17,21 @@ export default function SuccessPage() {
   }, [sessionId])
 
   return (
-    <div className="p-10 text-center">
-      <h1 className="text-3xl font-bold text-green-600">Платеж успешен 🎉</h1>
+    <div className="p-10 text-center min-h-[calc(100vh-123px-116px)] flex flex-col items-center justify-center">
+      <div>
+        <h1 className="text-3xl font-bold text-green-600 mb-4">Платеж успешен 🎉</h1>
 
-      <p className="mt-4 text-sm text-gray-500">Сессия: {sessionId}</p>
+        <p className="text-gray-500 mb-8">
+          Спасибо за покупку! Мы свяжемся с вами в ближайшее время.
+        </p>
+
+        <Link
+          href="/orders"
+          className="inline-block py-3 px-8 bg-indigo-600 text-white rounded-full"
+        >
+          Мои заказы
+        </Link>
+      </div>
     </div>
   )
 }
