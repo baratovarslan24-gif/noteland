@@ -84,7 +84,11 @@ function Header({ storeName, logoUrl }: Props) {
         >
           {user ? (
             <>
-              <Link href="/profile" className="flex items-center gap-2">
+              <Link
+                href="/profile"
+                className="flex items-center gap-2"
+                onClick={() => setUserBlockOpen(false)}
+              >
                 <LuUser className="w-5 h-5" />
                 <span>Профиль</span>
               </Link>
@@ -196,7 +200,11 @@ function Header({ storeName, logoUrl }: Props) {
         >
           {user ? (
             <>
-              <Link href="/profile" className="flex items-center gap-2">
+              <Link
+                href="/profile"
+                className="flex items-center gap-2"
+                onClick={() => setUserBlockOpen(false)}
+              >
                 <LuUser className="w-5 h-5" />
                 <span>Профиль</span>
               </Link>
