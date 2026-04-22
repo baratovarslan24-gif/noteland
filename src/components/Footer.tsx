@@ -37,7 +37,7 @@ export default function Footer({ storeName, logoUrl, socials }: Props) {
             Политика возврата
           </Link>{' '}
           <GoDotFill className="w-2 h-2" />
-          <Link className="hover:-translate-y-1 transition duration-300" href="/">
+          <Link className="hover:-translate-y-1 transition duration-300" href="/privacy-policy">
             Политика конфиденциальности
           </Link>{' '}
           <GoDotFill className="w-2 h-2" />

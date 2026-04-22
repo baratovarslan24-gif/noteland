@@ -105,3 +105,12 @@ export const getReturnPolicyPage = async () => {
 
   return res
 }
+
+export const getPrivacyPolicyPage = async () => {
+  const res = await payload.findGlobal({
+    slug: 'privacy-policy',
+    depth: 2,
+  })
+
+  return res
+}
