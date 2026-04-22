@@ -96,3 +96,12 @@ export const getDeliveryPolicyPage = async () => {
 
   return res
 }
+
+export const getReturnPolicyPage = async () => {
+  const res = await payload.findGlobal({
+    slug: 'return-policy',
+    depth: 2,
+  })
+
+  return res
+}
