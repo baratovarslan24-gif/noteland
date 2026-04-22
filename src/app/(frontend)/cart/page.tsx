@@ -130,7 +130,7 @@ export default function CartPage() {
 
             <Link
               href={'/checkout'}
-              className="block w-full text-center py-3 bg-indigo-600 hover:bg-indigo-700 transition text-white rounded-full"
+              className="block w-full text-center py-3 bg-cyan-600 hover:bg-cyan-700 transition text-white rounded-full"
             >
               Оформить заказ
             </Link>

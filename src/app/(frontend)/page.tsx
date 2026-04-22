@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const store = await getStoreInfo()
 
   return {
-    title: `${store?.name} - Online Store` || 'Home Page',
+    title: `${store?.name} - Интернет-магазин` || 'Главная страница',
   }
 }
 

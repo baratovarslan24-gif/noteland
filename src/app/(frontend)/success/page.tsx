@@ -25,10 +25,7 @@ export default function SuccessPage() {
           Спасибо за покупку! Мы свяжемся с вами в ближайшее время.
         </p>
 
-        <Link
-          href="/orders"
-          className="inline-block py-3 px-8 bg-indigo-600 text-white rounded-full"
-        >
+        <Link href="/orders" className="inline-block py-3 px-8 bg-cyan-600 text-white rounded-full">
           Мои заказы
         </Link>
       </div>

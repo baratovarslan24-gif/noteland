@@ -50,9 +50,12 @@ export default async function handler(req: PayloadRequest) {
     }
 
     if (!shippingAddress || !phone) {
-      return new Response(JSON.stringify({ error: 'shippingAddress and phone are required' }), {
-        status: 400,
-      })
+      return new Response(
+        JSON.stringify({ error: 'Адрес доставки и номер телефона обязательны для заполнения.' }),
+        {
+          status: 400,
+        },
+      )
     }
 
     const data: Omit<Order, 'id' | 'createdAt' | 'updatedAt'> = {
@@ -76,11 +79,14 @@ export default async function handler(req: PayloadRequest) {
           id: item.id,
         })
       } catch {
-        console.error('❌ PRODUCT NOT FOUND:', item.id)
+        console.error('❌ ТОВАР НЕ НАЙДЕН:', item.id)
 
-        return new Response(JSON.stringify({ error: `Invalid product id: ${item.id}` }), {
-          status: 400,
-        })
+        return new Response(
+          JSON.stringify({ error: `Неверный идентификатор товара: ${item.id}` }),
+          {
+            status: 400,
+          },
+        )
       }
     }
 
@@ -98,7 +104,7 @@ export default async function handler(req: PayloadRequest) {
 
       line_items: items.map((item) => ({
         price_data: {
-          currency: 'usd',
+          currency: 'KGS',
           product_data: {
             name: item.title,
           },
@@ -129,11 +135,11 @@ export default async function handler(req: PayloadRequest) {
 
     return new Response(JSON.stringify({ url: session.url }), { status: 200 })
   } catch (err: any) {
-    console.error('ERROR:', err)
+    console.error('ОШИБКА:', err)
 
     return new Response(
       JSON.stringify({
-        error: err.message || 'Internal server error',
+        error: err.message || 'Внутренняя ошибка сервера',
       }),
       { status: 500 },
     )

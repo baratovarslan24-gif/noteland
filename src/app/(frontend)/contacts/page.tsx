@@ -12,7 +12,7 @@ import {
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contact Us',
+  title: 'Контакты',
 }
 
 export default async function ContactsPage() {
@@ -22,24 +22,24 @@ export default async function ContactsPage() {
   return (
     <div className="w-full max-w-5xl mx-auto px-4 py-12 min-h-[calc(100vh-123px-80px)]">
       <article className="bg-white shadow-lg rounded-2xl p-8 md:p-10 border border-gray-100">
-        <h1 className="text-3xl md:text-4xl font-bold mb-8">Contact Us</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-8">Контакты</h1>
 
         <div className="grid md:grid-cols-2 gap-10">
           <div className="space-y-5">
             <p className="text-xl font-semibold">{store.name}</p>
 
             <div className="flex items-start gap-3 text-gray-600">
-              <FaMapMarkerAlt className="mt-1 text-indigo-600" />
+              <FaMapMarkerAlt className="mt-1 text-cyan-600" />
               <span>{store.address}</span>
             </div>
 
             <div className="flex items-center gap-3 text-gray-600">
-              <FaPhoneAlt className="text-indigo-600" />
+              <FaPhoneAlt className="text-cyan-600" />
               <span className="hover:text-black transition">{store.phone}</span>
             </div>
 
             <div className="flex items-center gap-3 text-gray-600">
-              <FaEnvelope className="text-indigo-600" />
+              <FaEnvelope className="text-cyan-600" />
               <span className="hover:text-black transition">{store.email}</span>
             </div>
           </div>

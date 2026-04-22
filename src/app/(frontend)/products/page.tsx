@@ -4,7 +4,7 @@ import type { Where } from 'payload'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'All products in our store',
+  title: 'Все товары в нашем магазине',
 }
 
 interface SearchParams {

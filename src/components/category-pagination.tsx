@@ -25,7 +25,7 @@ export function CategoryPagination({ totalPages, currentPage, categoryId }: Prop
         onClick={() => handlePage(currentPage - 1)}
         disabled={currentPage === 1}
         className={`p-2 rounded-full transition-colors ${
-          currentPage === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-indigo-100'
+          currentPage === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-cyan-100'
         }`}
       >
         <FaLongArrowAltLeft className="w-4 h-4 text-gray-800" />
@@ -39,7 +39,7 @@ export function CategoryPagination({ totalPages, currentPage, categoryId }: Prop
             key={p}
             onClick={() => handlePage(p)}
             className={`px-2 py-1 md:px-3 md:py-1.5 rounded-full text-sm transition-colors ${
-              isActive ? 'bg-gray-800 text-white shadow-sm' : 'hover:bg-indigo-100 text-gray-700'
+              isActive ? 'bg-gray-800 text-white shadow-sm' : 'hover:bg-cyan-100 text-gray-700'
             }`}
           >
             {p}
@@ -52,7 +52,7 @@ export function CategoryPagination({ totalPages, currentPage, categoryId }: Prop
         onClick={() => handlePage(currentPage + 1)}
         disabled={currentPage === totalPages}
         className={`p-2 rounded-full transition-colors ${
-          currentPage === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:bg-indigo-100'
+          currentPage === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:bg-cyan-100'
         }`}
       >
         <FaLongArrowAltRight className="w-4 h-4 text-gray-800" />

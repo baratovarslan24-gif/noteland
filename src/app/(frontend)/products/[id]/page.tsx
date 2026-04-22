@@ -22,7 +22,7 @@ export async function generateMetadata({
   })) as Product
 
   return {
-    title: product?.name || 'Product',
+    title: product?.name || 'Продукт',
   }
 }
 

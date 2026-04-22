@@ -21,23 +21,23 @@ type Order = {
 }
 const statusMap: Record<string, { label: string; color: string }> = {
   pending: {
-    label: 'Pending',
+    label: 'В ожидании',
     color: 'text-yellow-600',
   },
   processing: {
-    label: 'Processing',
+    label: 'В обработке',
     color: 'text-blue-600',
   },
   shipped: {
-    label: 'Shipped',
+    label: 'Отправлен',
     color: 'text-purple-600',
   },
   delivered: {
-    label: 'Delivered',
+    label: 'Доставлен',
     color: 'text-green-700',
   },
   cancelled: {
-    label: 'Cancelled',
+    label: 'Отменен',
     color: 'text-red-600',
   },
 }
@@ -63,7 +63,7 @@ export default function OrdersPage() {
         // Payload возвращает { docs: [...] }
         setOrders(data.docs || [])
       } catch (err) {
-        console.error('Error fetching orders', err)
+        console.error('Ошибка при получении заказов', err)
       } finally {
         setLoading(false)
       }
@@ -75,27 +75,27 @@ export default function OrdersPage() {
   if (!user) {
     return (
       <div className="p-10 text-center">
-        <p className="mb-4">You are not logged in</p>
-        <Link href="/auth/login" className="text-blue-600 underline">
-          Log in
+        <p className="mb-4">Вы не вошли в систему</p>
+        <Link href="/auth/login" className="text-cyan-600 underline">
+          Войти
         </Link>
       </div>
     )
   }
 
   if (loading) {
-    return <div className="p-10 text-center">Loading...</div>
+    return <div className="p-10 text-center">Загрузка...</div>
   }
 
   if (orders.length === 0) {
     return (
       <div className="p-10 text-center">
-        <h1 className="text-2xl font-bold mb-4">You have no orders</h1>
+        <h1 className="text-2xl font-bold mb-4">У вас нет заказов</h1>
         <Link
           href="/products"
           className="inline-block px-6 py-2 bg-gray-700 text-white rounded-full"
         >
-          Go to shopping
+          Перейти к покупкам
         </Link>
       </div>
     )
@@ -110,21 +110,21 @@ export default function OrdersPage() {
   return (
     <section className="py-12">
       <div className="max-w-5xl mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8">My Orders</h1>
+        <h1 className="text-3xl font-bold mb-8">Мои заказы</h1>
 
         <div className="space-y-6">
           {currentOrders.map((order) => (
             <div key={order.id} className="border border-gray-300 rounded-xl p-6">
               <div className="flex justify-between mb-4">
                 <div>
-                  <p className="font-semibold">Order #{order.id}</p>
+                  <p className="font-semibold">Заказ #{order.id}</p>
                   <p className="text-sm text-gray-500">
                     {new Date(order.createdAt).toLocaleString()}
                   </p>
                 </div>
 
                 <div className="text-right">
-                  <p className="font-bold">${formatPrice(order.total)}</p>
+                  <p className="font-bold">{formatPrice(order.total)} сом</p>
                   <p className={`text-sm font-medium ${statusMap[order.status]?.color}`}>
                     {statusMap[order.status]?.label || order.status}
                   </p>
@@ -137,7 +137,7 @@ export default function OrdersPage() {
                     <span>
                       {item.product?.name} × {item.quantity}
                     </span>
-                    <span>${formatPrice(item.price * item.quantity)}</span>
+                    <span>{formatPrice(item.price * item.quantity)} сом</span>
                   </div>
                 ))}
               </div>
@@ -154,10 +154,10 @@ export default function OrdersPage() {
                 onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                 disabled={currentPage === 1}
                 className={`p-2 rounded-full transition-colors ${
-                  currentPage === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-indigo-100'
+                  currentPage === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-cyan-100'
                 }`}
               >
-                <FaLongArrowAltLeft className="w-4 h-4 text-indigo-600" />
+                <FaLongArrowAltLeft className="w-4 h-4 text-cyan-600" />
               </button>
 
               {/* PAGES */}
@@ -171,8 +171,8 @@ export default function OrdersPage() {
                     className={`px-2 py-1 md:px-3 md:py-1.5 rounded-full text-sm transition-colors
                       ${
                         isActive
-                          ? 'bg-indigo-600 text-white shadow-sm'
-                          : 'text-gray-700 hover:bg-indigo-100'
+                          ? 'bg-cyan-600 text-white shadow-sm'
+                          : 'text-gray-700 hover:bg-cyan-100'
                       }
                     `}
                   >
@@ -186,12 +186,10 @@ export default function OrdersPage() {
                 onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                 disabled={currentPage === totalPages}
                 className={`p-2 rounded-full transition-colors ${
-                  currentPage === totalPages
-                    ? 'opacity-30 cursor-not-allowed'
-                    : 'hover:bg-indigo-100'
+                  currentPage === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:bg-cyan-100'
                 }`}
               >
-                <FaLongArrowAltRight className="w-4 h-4 text-indigo-600" />
+                <FaLongArrowAltRight className="w-4 h-4 text-cyan-600" />
               </button>
             </div>
           )}

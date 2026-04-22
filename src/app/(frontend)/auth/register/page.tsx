@@ -34,11 +34,11 @@ export default function RegisterPage() {
     const password = formData.get('password') as string
     const passwordConfirmation = formData.get('passwordConfirmation') as string
 
-    if (!name) return setErrors({ name: 'Name is required' })
-    if (!email) return setErrors({ email: 'Email is required' })
-    if (password.length < 6) return setErrors({ password: 'Minimum 6 characters' })
+    if (!name) return setErrors({ name: 'Требуется имя' })
+    if (!email) return setErrors({ email: 'Требуется email' })
+    if (password.length < 6) return setErrors({ password: 'Минимум 6 символов' })
     if (password !== passwordConfirmation)
-      return setErrors({ passwordConfirmation: 'Passwords do not match' })
+      return setErrors({ passwordConfirmation: 'Пароли не совпадают' })
 
     setLoading(true)
 
@@ -55,7 +55,7 @@ export default function RegisterPage() {
 
       if (!registerRes.ok) {
         setErrors({
-          general: registerData?.errors?.[0]?.message || 'Registration failed',
+          general: registerData?.errors?.[0]?.message || 'Регистрация не удалась',
         })
         return
       }
@@ -72,7 +72,7 @@ export default function RegisterPage() {
 
       if (!loginRes.ok) {
         setErrors({
-          general: loginData?.errors?.[0]?.message || 'Auto login failed',
+          general: loginData?.errors?.[0]?.message || 'Автоматический вход не удался',
         })
         return
       }
@@ -81,7 +81,7 @@ export default function RegisterPage() {
 
       router.push('/')
     } catch {
-      setErrors({ general: 'Network error' })
+      setErrors({ general: 'Сетевая ошибка' })
     } finally {
       setLoading(false)
     }

@@ -19,7 +19,7 @@ type Props = {
 
 export default function Footer({ storeName, logoUrl, socials }: Props) {
   return (
-    <footer className="bg-indigo-200 py-8">
+    <footer className="bg-cyan-200 py-8">
       <div className="max-w-7xl mx-auto px-4 flex flex-col gap-y-8 md:flex-row md:justify-between md:items-center">
         <Link href="/">
           <Logo src={logoUrl} alt={storeName} width={120} height={120} classes="object-contain" />
@@ -30,7 +30,7 @@ export default function Footer({ storeName, logoUrl, socials }: Props) {
           </Link>{' '}
           <GoDotFill className="w-2 h-2" />
           <Link className="hover:-translate-y-1 transition duration-300" href="/delivery-policy">
-            Delivery Policy
+            Политика доставки
           </Link>{' '}
           <GoDotFill className="w-2 h-2" />
           <Link className="hover:-translate-y-1 transition duration-300" href="/return-policy">

@@ -6,7 +6,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getTermsOfUsePage()
 
   return {
-    title: page?.title || 'Terms of Use',
+    title: page?.title || 'Условия использования',
   }
 }
 

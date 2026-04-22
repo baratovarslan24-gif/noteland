@@ -169,14 +169,14 @@ function Header({ storeName, logoUrl }: Props) {
           <Link className="bg-orange-400 px-8 py-2 rounded-full text-white" href="/products">
             Магазин
           </Link>
-          <Link className="bg-indigo-400 px-8 py-2 rounded-full text-white" href="/categories">
+          <Link className="bg-cyan-400 px-8 py-2 rounded-full text-white" href="/categories">
             Категории
           </Link>
-          <Link className="bg-indigo-400 px-8 py-2 rounded-full text-white" href="/about">
-            About us
+          <Link className="bg-orange-400 px-8 py-2 rounded-full text-white" href="/about">
+            О нас
           </Link>
-          <Link className="bg-indigo-400 px-8 py-2 rounded-full text-white" href="/contacts">
-            Contacts
+          <Link className="bg-cyan-400 px-8 py-2 rounded-full text-white" href="/contacts">
+            Контакты
           </Link>
         </div>
       </header>
@@ -194,14 +194,11 @@ function Header({ storeName, logoUrl }: Props) {
           <Link className="text-cyan-500 hover:text-cyan-700 transition-colors" href="/categories">
             Категории
           </Link>
-          <Link className="text-indigo-500 hover:text-indigo-700 transition-colors" href="/about">
-            About us
+          <Link className="text-orange-500 hover:text-orange-700 transition-colors" href="/about">
+            О нас
           </Link>
-          <Link
-            className="text-indigo-500 hover:text-indigo-700 transition-colors"
-            href="/contacts"
-          >
-            Contacts
+          <Link className="text-cyan-500 hover:text-cyan-700 transition-colors" href="/contacts">
+            Контакты
           </Link>
         </div>
         <form onSubmit={handleSearch} className="flex-1 my-6 relative">

@@ -56,7 +56,7 @@ export default function ProfilePage() {
         })
 
         if (!loginRes.ok) {
-          throw new Error('Invalid current password')
+          throw new Error('Неверный текущий пароль')
         }
       }
 
@@ -76,7 +76,7 @@ export default function ProfilePage() {
       const data = await res.json()
 
       if (!res.ok) {
-        throw new Error(data?.errors?.[0]?.message || 'Error updating profile')
+        throw new Error(data?.errors?.[0]?.message || 'Ошибка обновления профиля')
       }
 
       setUser(data.doc)
@@ -97,18 +97,18 @@ export default function ProfilePage() {
   }
 
   if (!user) {
-    return <div className="p-10 text-center">You are not authorized</div>
+    return <div className="p-10 text-center">Вы не авторизованы</div>
   }
 
   return (
     <section className="py-12 min-h-screen">
       <div className="max-w-xl mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8">My Profile</h1>
+        <h1 className="text-3xl font-bold mb-8">Мой профиль</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* NAME */}
           <div>
-            <label className="text-sm font-medium text-gray-700">Name</label>
+            <label className="text-sm font-medium text-gray-700">Имя</label>
             <input
               name="name"
               value={form.name}
@@ -120,12 +120,12 @@ export default function ProfilePage() {
 
           {/* PASSWORD BLOCK */}
           <div className="border-t border-gray-300 pt-6 space-y-4">
-            <h2 className="font-semibold">Change Password</h2>
+            <h2 className="font-semibold">Изменить пароль</h2>
 
             <input
               name="currentPassword"
               type="password"
-              placeholder="Current Password"
+              placeholder="Текущий пароль"
               value={form.currentPassword}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-4 py-3"
@@ -134,7 +134,7 @@ export default function ProfilePage() {
             <input
               name="newPassword"
               type="password"
-              placeholder="New Password"
+              placeholder="Новый пароль"
               value={form.newPassword}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-4 py-3"
@@ -149,16 +149,16 @@ export default function ProfilePage() {
 
           {success && (
             <div className="bg-green-50 border border-green-200 text-green-600 rounded-lg px-4 py-3 text-sm">
-              Profile updated successfully!
+              Профиль успешно обновлен!
             </div>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-indigo-700 text-white rounded-full"
+            className="w-full py-3 bg-cyan-700 text-white rounded-full"
           >
-            {loading ? 'Saving...' : 'Save'}
+            {loading ? 'Сохранение...' : 'Сохранить'}
           </button>
         </form>
       </div>

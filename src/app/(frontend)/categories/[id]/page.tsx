@@ -20,7 +20,7 @@ export async function generateMetadata({
   })
 
   return {
-    title: `All Products in ${category?.name} category` || 'Products in category',
+    title: `Все продукты в ${category?.name} категории` || 'Товары в категории',
   }
 }
 
@@ -52,18 +52,18 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     <section className="max-w-7xl mx-auto px-4 py-10 min-h-[calc(100vh-123px-116px)]">
       {!isEmpty ? (
         <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-8">
-          All Products in Category: {category.name}
+          Все товары в категории: {category.name}
         </h2>
       ) : null}
 
       {isEmpty ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
-          <p className="text-lg font-medium mb-2">No products found in this category</p>
+          <p className="text-lg font-medium mb-2">Товары в этой категории не найдены</p>
           <p className="text-sm text-gray-500">
-            Try checking back later or choose another category
+            Попробуйте зайти позже или выберите другую категорию
           </p>
-          <Link href={'/products'} className="py-2 px-6 bg-indigo-600 rounded-full text-white my-4">
-            Go shopping
+          <Link href={'/products'} className="py-2 px-6 bg-cyan-600 rounded-full text-white my-4">
+            Перейти к покупкам
           </Link>
         </div>
       ) : (

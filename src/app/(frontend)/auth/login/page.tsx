@@ -35,7 +35,7 @@ export default function LoginPage() {
       if (!res.ok) {
         const data = await res.json()
         setErrors({
-          general: data?.errors?.[0]?.message || 'Invalid credentials',
+          general: data?.errors?.[0]?.message || 'Неверные учетные данные',
         })
         return
       }
@@ -50,7 +50,7 @@ export default function LoginPage() {
 
       router.push('/')
     } catch {
-      setErrors({ general: 'Network error' })
+      setErrors({ general: 'Сетевая ошибка' })
     }
 
     setLoading(false)

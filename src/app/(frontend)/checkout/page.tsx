@@ -22,7 +22,7 @@ export default function CheckoutPage() {
     try {
       //  Проверка авторизации
       if (!user?.id) {
-        alert('You should be logged in to checkout')
+        alert('Для оформления заказа вам необходимо войти в систему')
         router.push('/auth/login')
         return
       }
@@ -65,11 +65,11 @@ export default function CheckoutPage() {
       if (data.url) {
         window.location.href = data.url
       } else {
-        alert('Failed to create payment')
+        alert('Не удалось создать платеж')
       }
     } catch (err) {
-      console.error('Checkout error:', err)
-      alert('Failed to create payment')
+      console.error('Ошибка оформления заказа:', err)
+      alert('Не удалось создать платеж')
     }
   }
 
