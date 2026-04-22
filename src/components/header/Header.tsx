@@ -88,7 +88,11 @@ function Header({ storeName, logoUrl }: Props) {
                 <LuUser className="w-5 h-5" />
                 <span>Профиль</span>
               </Link>
-              <Link href="/" className="flex items-center gap-2">
+              <Link
+                href="/orders"
+                className="flex items-center gap-2"
+                onClick={() => setUserBlockOpen(false)}
+              >
                 <LuShoppingCart className="w-5 h-5" />
                 <span>Мои заказы</span>
               </Link>
@@ -196,7 +200,11 @@ function Header({ storeName, logoUrl }: Props) {
                 <LuUser className="w-5 h-5" />
                 <span>Профиль</span>
               </Link>
-              <Link href="/" className="flex items-center gap-2">
+              <Link
+                href="/orders"
+                className="flex items-center gap-2"
+                onClick={() => setUserBlockOpen(false)}
+              >
                 <LuShoppingCart className="w-5 h-5" />
                 <span>Мои заказы</span>
               </Link>
