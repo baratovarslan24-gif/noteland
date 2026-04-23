@@ -48,7 +48,7 @@ export default function Footer({ storeName, logoUrl, socials }: Props) {
             )}
           </div>
           <div>
-            <div className="flex flex-col gap-y-2 items-center">
+            <div className="flex flex-col gap-y-2 ">
               <Link className="hover:-translate-y-1 transition duration-300" href="/about">
                 О нас
               </Link>{' '}

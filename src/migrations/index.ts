@@ -15,6 +15,7 @@ import * as migration_20260401_094731_add_termsofuse from './20260401_094731_add
 import * as migration_20260403_102117_add_header from './20260403_102117_add_header';
 import * as migration_20260405_083301_fix_code from './20260405_083301_fix_code';
 import * as migration_20260420_090915_change from './20260420_090915_change';
+import * as migration_20260423_143533_fix from './20260423_143533_fix';
 
 export const migrations = [
   {
@@ -100,6 +101,11 @@ export const migrations = [
   {
     up: migration_20260420_090915_change.up,
     down: migration_20260420_090915_change.down,
-    name: '20260420_090915_change'
+    name: '20260420_090915_change',
+  },
+  {
+    up: migration_20260423_143533_fix.up,
+    down: migration_20260423_143533_fix.down,
+    name: '20260423_143533_fix'
   },
 ];
