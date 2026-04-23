@@ -24,23 +24,23 @@ export default function Footer({ storeName, logoUrl, socials }: Props) {
         <Link href="/">
           <Logo src={logoUrl} alt={storeName} width={120} height={120} classes="object-contain" />
         </Link>
-        <div className="flex flex-col md:flex-row md:gap-x-4 md:items-center">
+        <div className="flex flex-col md:gap-y-4 md:flex-row md:gap-x-4 md:items-center">
           <Link className="hover:-translate-y-1 transition duration-300" href="/about">
             О нас
           </Link>{' '}
-          <GoDotFill className="w-2 h-2" />
+          <GoDotFill className="w-2 h-2 hidden md:block" />
           <Link className="hover:-translate-y-1 transition duration-300" href="/delivery-policy">
             Политика доставки
           </Link>{' '}
-          <GoDotFill className="w-2 h-2" />
+          <GoDotFill className="w-2 h-2 hidden md:block" />
           <Link className="hover:-translate-y-1 transition duration-300" href="/return-policy">
             Политика возврата
           </Link>{' '}
-          <GoDotFill className="w-2 h-2" />
+          <GoDotFill className="w-2 h-2 hidden md:block" />
           <Link className="hover:-translate-y-1 transition duration-300" href="/privacy-policy">
             Политика конфиденциальности
           </Link>{' '}
-          <GoDotFill className="w-2 h-2" />
+          <GoDotFill className="w-2 h-2 hidden md:block" />
           <Link className="hover:-translate-y-1 transition duration-300" href="/terms-of-use">
             Условия использования
           </Link>
