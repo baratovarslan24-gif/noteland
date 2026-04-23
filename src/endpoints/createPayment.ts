@@ -58,7 +58,7 @@ export default async function handler(req: PayloadRequest) {
       )
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_URL ? `https://${process.env.NEXT_PUBLIC_URL}` : null
+    const baseUrl = process.env.SITE_URL ? `https://${process.env.SITE_URL}` : null
 
     if (!baseUrl) {
       throw new Error('SITE_URL is not defined')
