@@ -58,6 +58,12 @@ export default async function handler(req: PayloadRequest) {
       )
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_URL ? `https://${process.env.NEXT_PUBLIC_URL}` : null
+
+    if (!baseUrl) {
+      throw new Error('SITE_URL is not defined')
+    }
+
     const data: Omit<Order, 'id' | 'createdAt' | 'updatedAt'> = {
       user: req.user.id,
       status: 'pending',
@@ -104,7 +110,7 @@ export default async function handler(req: PayloadRequest) {
 
       line_items: items.map((item) => ({
         price_data: {
-          currency: 'KGS',
+          currency: 'USD',
           product_data: {
             name: item.title,
           },
@@ -119,8 +125,8 @@ export default async function handler(req: PayloadRequest) {
         orderId: String(order.id),
       },
 
-      success_url: `${process.env.NEXT_PUBLIC_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_URL}/cart`,
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/cart`,
     })
 
     // сохранение Stripe session ID
