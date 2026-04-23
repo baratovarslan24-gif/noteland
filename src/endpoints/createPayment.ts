@@ -58,7 +58,10 @@ export default async function handler(req: PayloadRequest) {
       )
     }
 
-    const baseUrl = process.env.SITE_URL ? `https://${process.env.SITE_URL}` : null
+    const baseUrl =
+      process.env.SITE_URL ||
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
+      'http://localhost:3000'
 
     if (!baseUrl) {
       throw new Error('SITE_URL is not defined')
