@@ -1,3 +1,4 @@
+import { Media } from '@/payload-types'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
@@ -6,6 +7,7 @@ type CartItem = {
   title: string
   price: number
   quantity: number
+  mainPhoto?: number | Media
 }
 
 type CartState = {

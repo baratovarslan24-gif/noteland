@@ -88,14 +88,16 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="max-w-125 mx-8 my-20 md:mx-auto flex flex-col gap-y-8 border shadow-lg p-8 rounded-sm">
-      <h1 className="text-2xl md:text-4xl font-bold text-center text-cyan-400">Регистрация</h1>
+    <div className="max-w-125 mx-8 my-20 md:mx-auto flex flex-col gap-y-8 bg-linear-to-br from-gray-200 to-gray-100 border shadow-lg p-8 rounded-sm">
+      <h1 className="text-2xl md:text-4xl font-bold text-center bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent">
+        Регистрация
+      </h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-y-4 w-full">
         {errors.general && <span className="text-red-500 text-sm">{errors.general}</span>}
 
         <input
           name="name"
-          className="border p-2 rounded-sm"
+          className="border p-2 rounded-sm bg-white"
           type="text"
           placeholder="Ваше полное имя"
           required
@@ -104,7 +106,7 @@ export default function RegisterPage() {
 
         <input
           name="email"
-          className="border p-2 rounded-sm"
+          className="border p-2 rounded-sm bg-white"
           type="email"
           placeholder="Ваш email"
           required
@@ -113,7 +115,7 @@ export default function RegisterPage() {
 
         <input
           name="password"
-          className="border p-2 rounded-sm"
+          className="border p-2 rounded-sm bg-white"
           type="password"
           placeholder="Пароль"
           required
@@ -122,7 +124,7 @@ export default function RegisterPage() {
 
         <input
           name="passwordConfirmation"
-          className="border p-2 rounded-sm"
+          className="border p-2 rounded-sm bg-white"
           type="password"
           placeholder="Подтверждение пароля"
           required
@@ -133,7 +135,7 @@ export default function RegisterPage() {
 
         <button
           disabled={loading}
-          className="py-2 px-8 rounded-sm bg-cyan-500 text-white disabled:opacity-50"
+          className="py-2 px-8 rounded-sm bg-linear-to-r from-blue-800 to-cyan-400 text-white disabled:opacity-50"
         >
           {loading ? 'Регистрация...' : 'Зарегистрироваться'}
         </button>

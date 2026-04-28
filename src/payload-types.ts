@@ -223,7 +223,7 @@ export interface Product {
   description?: string | null;
   mainPhoto?: (number | null) | Media;
   photos?: (number | Media)[] | null;
-  category: number | Category;
+  category: (number | Category)[];
   brand?: (number | Brand)[] | null;
   price: number;
   salePrice?: number | null;

@@ -37,7 +37,7 @@ export const getHomeProducts = async () => {
 export const getCategories = async () => {
   const res = await payload.find({
     collection: 'categories',
-    limit: 40,
+    limit: 50,
     depth: 1,
   })
 

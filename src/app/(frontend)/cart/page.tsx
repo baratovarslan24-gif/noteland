@@ -4,6 +4,7 @@ import { formatPrice } from '@/lib/utils'
 import { useCartStore } from '@/store/useCartStore'
 import Link from 'next/link'
 import { IoMdCloseCircle } from 'react-icons/io'
+import Image from 'next/image'
 
 export default function CartPage() {
   const items = useCartStore((s) => s.items)
@@ -32,7 +33,7 @@ export default function CartPage() {
   return (
     <section className="py-15 min-h-150">
       <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-2xl md:text-4xl text-cyan-600 font-bold mb-6">
+        <h1 className="text-2xl md:text-4xl  bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent font-bold mb-6">
           Ваша корзина ({totalItems})
         </h1>
 
@@ -44,8 +45,19 @@ export default function CartPage() {
                 className="border rounded-lg p-4 flex justify-between items-center"
               >
                 <div className="w-1/2">
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p className="text-sm text-gray-500">{formatPrice(item.price)} сом каждый</p>
+                  {typeof item.mainPhoto !== 'number' && item.mainPhoto?.url && (
+                    <Image
+                      src={item.mainPhoto.url}
+                      alt={item.title}
+                      width={100}
+                      height={100}
+                      className="object-contain"
+                    />
+                  )}
+                  <div>
+                    <h3 className="font-semibold">{item.title}</h3>
+                    <p className="text-sm text-gray-500">{formatPrice(item.price)} сом каждый</p>
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -98,7 +110,7 @@ export default function CartPage() {
             {/* CLEAR */}
             <button
               onClick={clearCart}
-              className="text-sm text-white py-2 px-4 rounded-full border cursor-pointer mt-4 bg-red-400"
+              className="text-sm text-white py-2 px-4 rounded-full border cursor-pointer mt-4  bg-linear-to-r from-red-800 to-red-400 "
             >
               Очистить корзину
             </button>
@@ -120,7 +132,9 @@ export default function CartPage() {
 
             <div className="flex justify-between mb-6">
               <span>Доставка</span>
-              <span className="text-green-600">Бесплатно</span>
+              <span className=" bg-linear-to-r from-green-800 to-emerald-400 bg-clip-text text-transparent">
+                Бесплатно
+              </span>
             </div>
 
             <div className="flex justify-between font-bold text-lg mb-6">
@@ -130,7 +144,7 @@ export default function CartPage() {
 
             <Link
               href={'/checkout'}
-              className="block w-full text-center py-3 bg-cyan-600 hover:bg-cyan-700 transition text-white rounded-full"
+              className="block w-full text-center py-3  bg-linear-to-r from-blue-800 to-cyan-400  hover:bg-linear-to-r hover:from-blue-600 hover:to-cyan-300  transition text-white rounded-full"
             >
               Оформить заказ
             </Link>

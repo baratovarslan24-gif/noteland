@@ -78,14 +78,14 @@ function Header({ storeName, logoUrl }: Props) {
 
   return (
     <>
-      <header className="max-w-7xl mx-auto px-4 xl:px-8 py-4 border-b flex justify-between items-center flex-wrap md:hidden">
+      <header className="max-w-7xl bg-linear-to-br from-cyan-500 to-emerald-400 mx-auto px-4 xl:px-8 py-4 border-b rounded-2xl flex justify-between items-center flex-wrap md:hidden">
         <Link href="/">
           <Logo src={logoUrl} alt={storeName} width={100} height={100} classes="object-contain" />
         </Link>
         <div className="flex items-center gap-6">
           <Link href="/cart" className="relative">
             <LuShoppingCart className="w-5 h-5" />
-            <span className="w-5 h-5 rounded-full bg-cyan-500 text-white text-[10px] p-1 absolute -top-2 -right-3 flex items-center justify-center">
+            <span className="w-5 h-5 rounded-full bg-linear-to-br from-blue-800 to-cyan-400 text-white text-[10px] p-1 absolute -top-2 -right-3 flex items-center justify-center">
               {totalItems}
             </span>
           </Link>
@@ -124,7 +124,7 @@ function Header({ storeName, logoUrl }: Props) {
               </Link>
               <hr />
               <button
-                className="bg-cyan-500 text-white rounded-full inline-block py-2"
+                className="bg-linear-to-br from-cyan-800 to-cyan-400 text-white rounded-full inline-block py-2"
                 disabled={loading}
                 onClick={handleLogout}
               >
@@ -133,11 +133,14 @@ function Header({ storeName, logoUrl }: Props) {
             </>
           ) : (
             <div className="flex gap-4 items-center justify-center py-4">
-              <Link className="bg-cyan-300 px-8 py-2 rounded-full text-white" href="/auth/login">
+              <Link
+                className="bg-linear-to-br from-cyan-500 to-cyan-200 px-8 py-2 rounded-full text-white"
+                href="/auth/login"
+              >
                 Вход
               </Link>
               <Link
-                className="bg-cyan-500 px-8 py-2 rounded-full text-white"
+                className="bg-linear-to-br from-cyan-700 to-cyan-400 px-8 py-2 rounded-full text-white"
                 href="/auth/register"
                 onClick={() => setUserBlockOpen(false)}
               >
@@ -147,7 +150,7 @@ function Header({ storeName, logoUrl }: Props) {
           )}
 
           <button
-            className="w-6 h-6 bg-cyan-500 text-white absolute top-4 right-4 flex justify-center items-center text-sm font-bold p-1 rounded-full"
+            className="w-6 h-6 bg-linear-to-br from-cyan-700 to-cyan-400 text-white absolute top-4 right-4 flex justify-center items-center text-sm font-bold p-1 rounded-full"
             onClick={() => setUserBlockOpen(false)}
           >
             <IoIosClose className="w-4 h-4" />
@@ -166,38 +169,59 @@ function Header({ storeName, logoUrl }: Props) {
         </form>
 
         <div className="w-full flex items-center justify-center gap-4 flex-wrap">
-          <Link className="bg-orange-400 px-8 py-2 rounded-full text-white" href="/products">
-            Магазин
-          </Link>
-          <Link className="bg-cyan-400 px-8 py-2 rounded-full text-white" href="/categories">
-            Категории
-          </Link>
-          <Link className="bg-orange-400 px-8 py-2 rounded-full text-white" href="/about">
-            О нас
-          </Link>
-          <Link className="bg-cyan-400 px-8 py-2 rounded-full text-white" href="/contacts">
-            Контакты
-          </Link>
-        </div>
-      </header>
-      <header className="hidden max-w-7xl mx-auto px-4 xl:px-8 py-4 border-b md:flex justify-between items-center gap-8">
-        <Link href="/">
-          <Logo src={logoUrl} alt={storeName} width={100} height={100} classes="object-contain" />
-        </Link>
-        <div className="flex items-center justify-center gap-4">
           <Link
-            className="text-orange-500 hover:text-orange-700 transition-colors"
+            className="bg-linear-to-r from-yellow-400 to-orange-500 px-8 py-2 rounded-full text-white"
             href="/products"
           >
             Магазин
           </Link>
-          <Link className="text-cyan-500 hover:text-cyan-700 transition-colors" href="/categories">
+          <Link
+            className="bg-linear-to-r from-blue-500 to-purple-300 px-8 py-2 rounded-full text-white"
+            href="/categories"
+          >
             Категории
           </Link>
-          <Link className="text-orange-500 hover:text-orange-700 transition-colors" href="/about">
+          <Link
+            className="bg-linear-to-r from-yellow-400 to-orange-500 px-8 py-2 rounded-full text-white"
+            href="/about"
+          >
             О нас
           </Link>
-          <Link className="text-cyan-500 hover:text-cyan-700 transition-colors" href="/contacts">
+          <Link
+            className="bg-linear-to-r from-blue-500 to-purple-300 px-8 py-2 rounded-full text-white"
+            href="/contacts"
+          >
+            Контакты
+          </Link>
+        </div>
+      </header>
+      <header className="hidden max-w-7xl md:bg-linear-to-br from-cyan-400 to-emerald-300 mx-auto px-4 xl:px-8 py-4 border-b rounded-2xl md:flex justify-between items-center gap-4">
+        <Link href="/">
+          <Logo src={logoUrl} alt={storeName} width={100} height={100} classes="object-contain" />
+        </Link>
+        <div className="flex items-center justify-center gap-2">
+          <Link
+            className="bg-linear-to-r from-yellow-400 to-orange-500 px-4 py-2 rounded-full text-white"
+            href="/products"
+          >
+            Магазин
+          </Link>
+          <Link
+            className="bg-linear-to-r from-blue-600 to-purple-400 px-4 py-2 rounded-full text-white"
+            href="/categories"
+          >
+            Категории
+          </Link>
+          <Link
+            className="bg-linear-to-r from-yellow-400 to-orange-500 px-4 py-2 rounded-full text-white"
+            href="/about"
+          >
+            О нас
+          </Link>
+          <Link
+            className="bg-linear-to-r from-blue-600 to-purple-400 px-4 py-2 rounded-full text-white"
+            href="/contacts"
+          >
             Контакты
           </Link>
         </div>
@@ -214,7 +238,7 @@ function Header({ storeName, logoUrl }: Props) {
         <div className="flex items-center gap-6">
           <Link href="/cart" className="relative">
             <LuShoppingCart className="w-5 h-5" />
-            <span className="w-5 h-5 rounded-full bg-cyan-500 text-white text-[10px] p-1 absolute -top-2 -right-3 flex items-center justify-center">
+            <span className="w-5 h-5 rounded-full bg-linear-to-br from-blue-800 to-cyan-400 text-white text-[10px] p-1 absolute -top-2 -right-3 flex items-center justify-center">
               {totalItems}
             </span>
           </Link>
@@ -253,7 +277,7 @@ function Header({ storeName, logoUrl }: Props) {
               </Link>
               <hr />
               <button
-                className="bg-cyan-500 text-white rounded-full inline-block py-2"
+                className="bg-linear-to-br from-blue-800 to-cyan-400 text-white rounded-full inline-block py-2"
                 disabled={loading}
                 onClick={handleLogout}
               >
@@ -263,14 +287,14 @@ function Header({ storeName, logoUrl }: Props) {
           ) : (
             <div className="flex gap-4 items-center justify-center py-4">
               <Link
-                className="bg-cyan-300 px-8 py-2 rounded-full text-white"
+                className="bg-linear-to-br from-blue-800 to-cyan-400 px-8 py-2 rounded-full text-white"
                 href="/auth/login"
                 onClick={() => setUserBlockOpen(false)}
               >
                 Вход
               </Link>
               <Link
-                className="bg-cyan-500 px-8 py-2 rounded-full text-white"
+                className="bg-linear-to-br from-blue-600 to-cyan-400 px-8 py-2 rounded-full text-white"
                 href="/auth/register"
                 onClick={() => setUserBlockOpen(false)}
               >
@@ -280,7 +304,7 @@ function Header({ storeName, logoUrl }: Props) {
           )}
 
           <button
-            className="w-6 h-6 bg-cyan-500 text-white absolute top-4 right-4 flex justify-center items-center text-sm font-bold p-1 rounded-full"
+            className="w-6 h-6 bg-linear-to-br from-blue-800 to-cyan-400 text-white absolute top-4 right-4 flex justify-center items-center text-sm font-bold p-1 rounded-full"
             onClick={() => setUserBlockOpen(false)}
           >
             <IoIosClose className="w-4 h-4" />

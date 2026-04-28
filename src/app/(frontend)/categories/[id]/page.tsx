@@ -51,7 +51,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   return (
     <section className="max-w-7xl mx-auto px-4 py-10 min-h-[calc(100vh-123px-116px)]">
       {!isEmpty ? (
-        <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-8 bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent">
           Все товары в категории: {category.name}
         </h2>
       ) : null}
@@ -62,13 +62,16 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           <p className="text-sm text-gray-500">
             Попробуйте зайти позже или выберите другую категорию
           </p>
-          <Link href={'/products'} className="py-2 px-6 bg-cyan-600 rounded-full text-white my-4">
+          <Link
+            href={'/products'}
+            className="py-2 px-6 bg-linear-to-r from-blue-800 to-cyan-300 rounded-full text-white my-4"
+          >
             Перейти к покупкам
           </Link>
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {products.map((product) => (
               <ProductCard product={product} key={product.id} />
             ))}

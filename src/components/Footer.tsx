@@ -20,8 +20,8 @@ type Props = {
 export default function Footer({ storeName, logoUrl, socials }: Props) {
   return (
     <>
-      <footer className="bg-cyan-200 py-8 md:hidden">
-        <div className="flex flex-row items-center">
+      <footer className="bg-linear-to-br from-cyan-500 to-emerald-300 rounded-2xl pt-8 md:hidden">
+        <div className="flex flex-row items-center mb-2">
           <div className="max-w-7xl mx-auto px-4 flex flex-col gap-y-8 ">
             <Link href="/">
               <Logo
@@ -70,9 +70,13 @@ export default function Footer({ storeName, logoUrl, socials }: Props) {
             </div>
           </div>
         </div>
+        <div className="text-center py-2 bg-linear-to-br from-cyan-700 to-emerald-500">
+          <p>{storeName} </p>
+          <p>© 2026 Все права защищены</p>
+        </div>
       </footer>
-      <footer className="bg-cyan-200 py-8 hidden md:block">
-        <div className="max-w-7xl mx-auto px-4 flex  gap-y-8 flex-row justify-between items-center">
+      <footer className="bg-linear-to-br from-cyan-500 to-emerald-300 rounded-2xl pt-8 hidden md:block">
+        <div className="max-w-7xl mx-auto px-4 flex  gap-y-8 flex-row justify-between items-center mb-2">
           <Link href="/">
             <Logo src={logoUrl} alt={storeName} width={120} height={120} classes="object-contain" />
           </Link>
@@ -108,6 +112,10 @@ export default function Footer({ storeName, logoUrl, socials }: Props) {
               {socials.whatsapp && <SocialMediaLink href={socials.whatsapp} icon={FaWhatsapp} />}
             </div>
           )}
+        </div>
+        <div className="text-center py-2 bg-linear-to-br from-cyan-700 to-emerald-500">
+          <p>{storeName} </p>
+          <p>© 2026 Все права защищены</p>
         </div>
       </footer>
     </>

@@ -29,7 +29,7 @@ export default async function HomePage() {
       <HomepageHeroBlock store={store} />
       <section className="max-w-7xl mx-auto px-4 py-10">
         <div className="flex justify-between">
-          <h2 className="font-bold text-2xl md:text-4xl text-cyan-600 mb-4 md:mb-8">
+          <h2 className="font-bold text-2xl md:text-4xl bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent mb-4 md:mb-8">
             Мы рекомендуем
           </h2>
           <Link href="/products" className="text-orange-600 flex items-center gap-2">
@@ -46,7 +46,9 @@ export default async function HomePage() {
       </section>
       <section className="max-w-7xl mx-auto px-4 py-10">
         <div className="flex justify-between">
-          <h2 className="font-bold text-2xl md:text-4xl text-cyan-600 mb-4 md:mb-8">Категории</h2>
+          <h2 className="font-bold text-2xl md:text-4xl bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent mb-4 md:mb-8">
+            Категории
+          </h2>
           <Link href="/categories" className="text-orange-600 flex items-center gap-2">
             Посмотреть все
             <FaArrowRightLong />
@@ -57,7 +59,7 @@ export default async function HomePage() {
             <CategoryCard key={category.id} category={category} />
           ))}
           <div
-            className="border rounded-sm flex flex-col items-center justify-center p-4 text-cyan-600"
+            className="border rounded-sm flex flex-col items-center justify-center p-4 bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent"
             style={{ backgroundColor: getVeryLightColor() }}
           >
             <Link className="flex flex-col items-center justify-center" href={'/categories'}>

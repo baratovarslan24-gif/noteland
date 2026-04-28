@@ -5,6 +5,7 @@ import { useCartStore } from '@/store/useCartStore'
 import { formatPrice } from '@/lib/utils'
 import { useAuth } from '@/providers/AuthProvider'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 export default function CheckoutPage() {
   const items = useCartStore((s) => s.items)
@@ -84,12 +85,23 @@ export default function CheckoutPage() {
         <h2 className="text-2xl font-bold mb-4"> Ваш заказ</h2>
 
         {items.map((item) => (
-          <div key={item.id} className="flex justify-between border p-4 rounded">
+          <div key={item.id} className="flex justify-between items-center border p-4 rounded">
             <div>
-              <h3 className="font-semibold">{item.title}</h3>
-              <p className="text-sm text-gray-500">
-                {formatPrice(item.price)} сом × {item.quantity}
-              </p>
+              {typeof item.mainPhoto !== 'number' && item.mainPhoto?.url && (
+                <Image
+                  src={item.mainPhoto.url}
+                  alt={item.title}
+                  width={100}
+                  height={100}
+                  className="object-contain"
+                />
+              )}
+              <div>
+                <h3 className="font-semibold">{item.title}</h3>
+                <p className="text-sm text-gray-500">
+                  {formatPrice(item.price)} сом × {item.quantity}
+                </p>
+              </div>
             </div>
 
             <div className="font-semibold">{formatPrice(item.price * item.quantity)} сом</div>
@@ -98,7 +110,7 @@ export default function CheckoutPage() {
       </div>
 
       {/* RIGHT — FORM + SUMMARY */}
-      <div className="w-full lg:w-1/3 border p-6 rounded bg-gray-50">
+      <div className="w-full lg:w-1/3 border p-6 rounded bg-linear-to-r from-gray-200 to-gray-100 ">
         <h2 className="text-xl font-bold mb-4">Оформление заказа</h2>
 
         <input
@@ -106,7 +118,7 @@ export default function CheckoutPage() {
           placeholder="Адрес доставки"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          className="border p-2 mb-3 w-full"
+          className="border p-2 mb-3 w-full bg-white"
         />
 
         <input
@@ -114,7 +126,7 @@ export default function CheckoutPage() {
           placeholder="Телефон"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          className="border p-2 mb-4 w-full"
+          className="border p-2 mb-4 w-full bg-white"
         />
 
         {/* SUMMARY */}
@@ -125,7 +137,7 @@ export default function CheckoutPage() {
 
         <button
           onClick={handleCheckout}
-          className="bg-cyan-600 hover:bg-cyan-700 text-white w-full py-3 rounded"
+          className="bg-linear-to-r from-blue-800 to-cyan-400 hover:bg-linear-to-r hover:from-blue-600 hover:to-cyan-300 text-white w-full py-3 rounded"
         >
           Оплатить сейчас
         </button>

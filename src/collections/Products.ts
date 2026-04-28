@@ -54,6 +54,7 @@ export const Products: CollectionConfig = {
       relationTo: 'categories',
       required: true,
       label: 'Категория',
+      hasMany: true,
     },
     {
       name: 'brand',

@@ -16,12 +16,10 @@ type Brand = {
   name: string
 }
 export default function ProductCard({ product }: Props) {
-  const addItem = useCartStore((s) => s.addItem)
-
   return (
     <div
       key={product.id}
-      className="w-full border p-4 rounded-lg min-h-85 flex flex-col justify-between"
+      className="w-full  border p-4 rounded-lg min-h-85 flex flex-col justify-between"
     >
       <div className="relative w-full h-40 mb-4">
         {typeof product.mainPhoto !== 'number' && product.mainPhoto?.url && (
@@ -54,19 +52,24 @@ export default function ProductCard({ product }: Props) {
               <span className="text-gray-400 line-through text-sm">
                 {formatPrice(product.price)} сом
               </span>
-              <span className="font-semibold text-red-600 text-lg">
+              <span className="font-semibold bg-linear-to-r from-red-700 to-red-500 bg-clip-text text-transparent text-lg">
                 {formatPrice(product.salePrice)} сом
               </span>
             </div>
           ) : (
-            <span className="font-semibold text-cyan-700 text-lg">
+            <span className="font-semibold bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent text-lg">
               {formatPrice(product.price)} сом
             </span>
           )}
         </div>
 
         {product.stock ? (
-          <AddToCartButton id={product.id} title={product.name} price={product.price} />
+          <AddToCartButton
+            id={product.id}
+            title={product.name}
+            price={product.price}
+            mainPhoto={product.mainPhoto}
+          />
         ) : (
           <span className="text-sm text-gray-400">Распродано</span>
         )}

@@ -56,14 +56,16 @@ export default function LoginPage() {
     setLoading(false)
   }
   return (
-    <div className="max-w-125 mx-8 my-20 md:mx-auto flex flex-col gap-y-8 border shadow-lg p-8 rounded-sm">
-      <h1 className="text-2xl md:text-4xl font-bold text-center text-cyan-400">Авторизоваться</h1>
+    <div className="max-w-125 mx-8 my-20 md:mx-auto flex flex-col gap-y-8 border bg-linear-to-br from-gray-200 to-gray-100 shadow-lg p-8 rounded-sm">
+      <h1 className="text-2xl md:text-4xl font-bold text-center bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent">
+        Авторизоваться
+      </h1>
       {errors.general && (
         <span className="text-xs text-red-600 font-semibold tracking-widest">{errors.general}</span>
       )}
       <form onSubmit={handleSubmit} className="flex flex-col gap-y-4 w-full">
         <input
-          className="border p-2 rounded-sm"
+          className="border p-2 rounded-sm bg-white"
           type="email"
           placeholder="Ваш email"
           required
@@ -75,7 +77,7 @@ export default function LoginPage() {
         />
 
         <input
-          className="border p-2 rounded-sm"
+          className="border p-2 rounded-sm bg-white"
           type="password"
           placeholder="Ваш пароль"
           required
@@ -86,14 +88,17 @@ export default function LoginPage() {
           }}
         />
 
-        <button disabled={loading} className="py-2 px-8 rounded-sm bg-cyan-500 text-white">
+        <button
+          disabled={loading}
+          className="py-2 px-8 rounded-sm bg-linear-to-r from-blue-800 to-cyan-400 text-white"
+        >
           {loading ? 'Вход...' : 'Войти'}
         </button>
 
         <p className="font-light text-center">
           Не зарегистрированы?{' '}
           <Link
-            className="font-semibold text-cyan-500 hover:text-cyan-700 transition-colors"
+            className="font-semibold bg-linear-to-r from-blue-600 to-cyan-400 bg-clip-text text-transparent hover:bg-linear-to-r hover:from-blue-800 hover:to-cyan-600 hover:bg-clip-text hover:text-transparent transition-colors"
             href="/auth/register"
           >
             Зарегистрироваться

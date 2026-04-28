@@ -102,7 +102,9 @@ export default function ProductsClient({
   return (
     <section className="max-w-7xl mx-auto px-4 py-10">
       <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-        <h1 className="text-2xl font-bold text-cyan-600">Список продуктов</h1>
+        <h1 className="text-2xl font-bold bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent">
+          Список продуктов
+        </h1>
 
         <select
           value={searchParams.get('sort') || ''}
@@ -235,7 +237,7 @@ export default function ProductsClient({
                   currentPage === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-cyan-100'
                 }`}
               >
-                <FaLongArrowAltLeft className="w-4 h-4 text-cyan-600" />
+                <FaLongArrowAltLeft className="w-4 h-4 bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent" />
               </button>
 
               {/* PAGES */}
@@ -249,8 +251,8 @@ export default function ProductsClient({
                     className={`px-2 py-1 md:px-3 md:py-1.5 rounded-full text-sm transition-colors
                       ${
                         isActive
-                          ? 'bg-cyan-600 text-white shadow-sm'
-                          : 'hover:bg-cyan-100 text-gray-700'
+                          ? 'bg-linear-to-r from-blue-600 to-cyan-400 text-white shadow-sm'
+                          : 'hover:bg-linear-to-r hover:from-blue-800 hover:to-cyan-600 text-gray-700'
                       }
                     `}
                   >
@@ -267,7 +269,7 @@ export default function ProductsClient({
                   currentPage === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:bg-cyan-100'
                 }`}
               >
-                <FaLongArrowAltRight className="w-4 h-4 text-cyan-600" />
+                <FaLongArrowAltRight className="w-4 h-4 bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent" />
               </button>
             </div>
           )}

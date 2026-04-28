@@ -27,7 +27,7 @@ export default function CategoryCard({ category }: Props) {
             </Link>
           )}
         </div>
-        <h3 className="font-semibold text-cyan-600 text-center text-xl">
+        <h3 className="font-semibold bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent text-center text-xl">
           <Link href={`/categories/${category.id}`}>{category.name}</Link>
         </h3>
       </div>

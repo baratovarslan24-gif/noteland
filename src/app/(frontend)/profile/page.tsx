@@ -156,7 +156,7 @@ export default function ProfilePage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-cyan-700 text-white rounded-full"
+            className="w-full py-3  bg-linear-to-r from-blue-800 to-cyan-400 text-white rounded-full"
           >
             {loading ? 'Сохранение...' : 'Сохранить'}
           </button>
