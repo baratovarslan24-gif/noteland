@@ -1,6 +1,6 @@
 'use client'
 
-import { Product } from '@/payload-types'
+import { Media, Product } from '@/payload-types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { formatPrice } from '@/lib/utils'
@@ -68,7 +68,7 @@ export default function ProductCard({ product }: Props) {
             id={product.id}
             title={product.name}
             price={product.price}
-            mainPhoto={product.mainPhoto}
+            mainPhoto={product.mainPhoto as Media}
           />
         ) : (
           <span className="text-sm text-gray-400">Распродано</span>
