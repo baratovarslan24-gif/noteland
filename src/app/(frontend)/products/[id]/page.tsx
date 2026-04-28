@@ -107,7 +107,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
               <div className="flex items-end gap-3">
                 <span className="text-4xl font-black text-gray-900">
-                  ${formatPrice(product.price)}
+                  {formatPrice(product.price)} сом
                 </span>
                 {hasDiscount && (
                   <span className="text-lg text-gray-400 line-through mb-1">

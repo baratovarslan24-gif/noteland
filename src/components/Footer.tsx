@@ -29,7 +29,7 @@ export default function Footer({ storeName, logoUrl, socials }: Props) {
                 alt={storeName}
                 width={120}
                 height={120}
-                classes="object-contain"
+                classes="object-contain bg-white rounded-full"
               />
             </Link>
 
@@ -78,7 +78,13 @@ export default function Footer({ storeName, logoUrl, socials }: Props) {
       <footer className="bg-linear-to-br from-cyan-500 to-emerald-300 rounded-2xl pt-8 hidden md:block">
         <div className="max-w-7xl mx-auto px-4 flex  gap-y-8 flex-row justify-between items-center mb-2">
           <Link href="/">
-            <Logo src={logoUrl} alt={storeName} width={120} height={120} classes="object-contain" />
+            <Logo
+              src={logoUrl}
+              alt={storeName}
+              width={120}
+              height={120}
+              classes="object-contain bg-white rounded-full"
+            />
           </Link>
           <div className="flex gap-y-4 flex-row gap-x-4 items-center">
             <Link className="hover:-translate-y-1 transition duration-300" href="/about">

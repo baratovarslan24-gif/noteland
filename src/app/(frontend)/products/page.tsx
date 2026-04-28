@@ -13,7 +13,7 @@ interface SearchParams {
   category?: string
   priceMin?: string
   priceMax?: string
-  inStock?: string
+  stock?: string
   sale?: string
   search?: string
 }
@@ -43,8 +43,8 @@ export default async function ProductsPage({
     and.push({ category: { equals: params.category } })
   }
 
-  if (params.inStock === 'true') {
-    and.push({ inStock: { equals: true } })
+  if (params.stock === 'true') {
+    and.push({ stock: { equals: true } })
   }
 
   if (params.sale === 'true') {

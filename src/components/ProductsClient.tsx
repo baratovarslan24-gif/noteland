@@ -179,7 +179,7 @@ export default function ProductsClient({
               <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
                 <input
                   type="checkbox"
-                  checked={searchParams.get('inStock') === 'true'}
+                  checked={searchParams.get('stock') === 'true'}
                   onChange={handleInStock}
                 />
                 В наличии
@@ -191,7 +191,7 @@ export default function ProductsClient({
                   checked={searchParams.get('sale') === 'true'}
                   onChange={handleSale}
                 />
-                В продаже
+                Акции
               </label>
             </div>
 

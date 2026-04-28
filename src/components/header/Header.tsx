@@ -80,7 +80,13 @@ function Header({ storeName, logoUrl }: Props) {
     <>
       <header className="max-w-7xl bg-linear-to-br from-cyan-500 to-emerald-400 mx-auto px-4 xl:px-8 py-4 border-b rounded-2xl flex justify-between items-center flex-wrap md:hidden">
         <Link href="/">
-          <Logo src={logoUrl} alt={storeName} width={100} height={100} classes="object-contain" />
+          <Logo
+            src={logoUrl}
+            alt={storeName}
+            width={100}
+            height={100}
+            classes="object-contain bg-white rounded-full"
+          />
         </Link>
         <div className="flex items-center gap-6">
           <Link href="/cart" className="relative">
@@ -197,7 +203,13 @@ function Header({ storeName, logoUrl }: Props) {
       </header>
       <header className="hidden max-w-7xl md:bg-linear-to-br from-cyan-400 to-emerald-300 mx-auto px-4 xl:px-8 py-4 border-b rounded-2xl md:flex justify-between items-center gap-4">
         <Link href="/">
-          <Logo src={logoUrl} alt={storeName} width={100} height={100} classes="object-contain" />
+          <Logo
+            src={logoUrl}
+            alt={storeName}
+            width={100}
+            height={100}
+            classes="object-contain bg-white rounded-full"
+          />
         </Link>
         <div className="flex items-center justify-center gap-2">
           <Link
