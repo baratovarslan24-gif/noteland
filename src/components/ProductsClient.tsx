@@ -237,7 +237,7 @@ export default function ProductsClient({
                   currentPage === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-cyan-100'
                 }`}
               >
-                <FaLongArrowAltLeft className="w-4 h-4 bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent" />
+                <FaLongArrowAltLeft className="w-4 h-4 text-cyan-600" />
               </button>
 
               {/* PAGES */}
@@ -269,7 +269,7 @@ export default function ProductsClient({
                   currentPage === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:bg-cyan-100'
                 }`}
               >
-                <FaLongArrowAltRight className="w-4 h-4 bg-linear-to-r from-blue-800 to-cyan-400 bg-clip-text text-transparent" />
+                <FaLongArrowAltRight className="w-4 h-4 text-cyan-600" />
               </button>
             </div>
           )}

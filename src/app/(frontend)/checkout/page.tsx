@@ -96,12 +96,12 @@ export default function CheckoutPage() {
                   className="object-contain"
                 />
               )}
-              <div>
-                <h3 className="font-semibold">{item.title}</h3>
-                <p className="text-sm text-gray-500">
-                  {formatPrice(item.price)} сом × {item.quantity}
-                </p>
-              </div>
+            </div>
+            <div>
+              <h3 className="font-semibold">{item.title}</h3>
+              <p className="text-sm text-gray-500">
+                {formatPrice(item.price)} сом × {item.quantity}
+              </p>
             </div>
 
             <div className="font-semibold">{formatPrice(item.price * item.quantity)} сом</div>
